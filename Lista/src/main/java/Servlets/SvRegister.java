@@ -2,11 +2,7 @@ package Servlets;
 
 import com.mundo.lista.Persistencia;
 import com.mundo.lista.Usuarios;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -16,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 /**
  *
@@ -33,6 +28,42 @@ public class SvRegister extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+
+        System.out.println("Corriendo metodo doGet");
+
+        //Obtener la sesion actual
+        HttpSession session = request.getSession();
+
+        //Obtener el contexto del servlet
+        ServletContext context = getServletContext();
+
+        ArrayList<Usuarios> misUsuarios = new ArrayList<>();
+
+        //Cargar la lista de perros desde un archivo
+        Persistencia.leerArchivo(misUsuarios, context);
+
+        // Obtener datos del formulario enviados por POST
+        String ced = request.getParameter("cedula");
+
+        String contrasenia = request.getParameter("contrasenia");
+
+        int cedula = Integer.parseInt(ced);
+
+        for (Usuarios usuario : misUsuarios) {
+            if ((usuario.getCedula() == cedula) && (usuario.getContrasena().equals(contrasenia))) {
+                // Si la condición se cumple, redirige a login.jsp
+                response.sendRedirect("login.jsp");
+                return; // Termina la ejecución del método doGet
+            } else {
+                String ingresar = "no";
+                request.setAttribute("ingresar", ingresar);
+                // Redireccionar a la página de destino internamente en el servidor
+                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
+
     }
 
     @Override
@@ -69,7 +100,7 @@ public class SvRegister extends HttpServlet {
         String registrado = "si";
         request.setAttribute("registrado", registrado);
 
-// Redireccionar a la página de destino internamente en el servidor
+        // Redireccionar a la página de destino internamente en el servidor
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
     }

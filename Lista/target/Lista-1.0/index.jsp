@@ -7,40 +7,42 @@
 <!-- Section: Design Block -->
 
 <div class="background"></div>
-<section class="home">
+<form action="SvRegister" method="GET">
+    <section class="home">
 
-    <div class="content">
-        <a href="#" class="logo"> Nalmi</a>
-        <h2> Bienvenido! </h2>          
-        <h3> Sistema Gestión de Tareas </h3>
-        <pre> </pre>
-    </div>
-    <div class="login">
-        <h2>Ingresar</h2>
-        <div class="input">
-            <input type="text" class="input1" placeholder="Cédula Usuario" required>
-            <i class="fa-solid fa-envelope"></i>
+        <div class="content">
+            <a href="#" class="logo"> Nalmi</a>
+            <h2> Bienvenido! </h2>          
+            <h3> Sistema Gestión de Tareas </h3>
+            <pre> </pre>
         </div>
-        <div class="input">
-            <input type="password" class="input1" placeholder="Contraseña" required>
-            <i class="fa-solid fa-envelope" style="color: #ff0000;"></i>
+        <div class="login">
+            <h2>Ingresar</h2>
+            <div class="input">
+                <input type="text" class="input1" name="cedula" placeholder="Cédula Usuario" required>
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="input">
+                <input type="password" class="input1" name="contrasenia" placeholder="Contraseña" required>
+                <i class="fa-solid fa-envelope" style="color: #ff0000;"></i>
+            </div>
+            <div class="button">
+                <button type="submit" class="btn">Ingresar</button>
+            </div>
+            <div class="sign-up">
+                <p>No tiene una cuenta?</p>
+                <ingresar type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <a href="#">Registrese aqui</a>
+                </ingresar>
+            </div>
         </div>
-        <div class="button">
-            <button class="btn">Ingresar</button>
-        </div>
-        <div class="sign-up">
-            <p>No tiene una cuenta?</p>
-            <ingresar type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <a href="#">Registrese aqui</a>
-            </ingresar>
-        </div>
-    </div>
+    </section>
 </form>
-</section>
 
 <%
     String registrado = (String) request.getAttribute("registrado");
-
+    String ingresar = (String) request.getAttribute("ingresar");
+        
     System.out.println(registrado);
     if (registrado != null && registrado.equals("si")) {
 
@@ -50,9 +52,19 @@
         usuarioR();
     });
 </script>
-<%       // Elimina el atributo "registrado" de la solicitud
-    request.removeAttribute("registrado");
+<%    }
+    if (ingresar != null && ingresar.equals("no")) {
+%>
+<script>
+      $(document).ready(function () {
+        usuarioNoR();
+    });
+</script>
+<%
     }
+    // Elimina los atributos "registrado" e "ingresar" de la solicitud
+    request.removeAttribute("registrado");
+    request.removeAttribute("ingresar");
 %>
 
 
@@ -93,7 +105,6 @@
 
 <!-- Modal -->
 <div class="modal fade" id="registrado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="registradoLabel" aria-hidden="true">
-    <form action="SvRegister" method="POST">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -104,7 +115,20 @@
                 </div>
             </div>
         </div>
-    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="noRegistrado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="noRegistradoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2>Datos incorrectos</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
 </div>
 
 
@@ -112,6 +136,10 @@
 <script>
     function usuarioR() {
         $("#registrado").modal("show");
+    }
+    
+    function usuarioNoR(){
+        $("#noRegistrado").modal("show");
     }
 </script>
 

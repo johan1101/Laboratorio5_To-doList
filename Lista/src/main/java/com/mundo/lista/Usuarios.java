@@ -7,7 +7,7 @@ package com.mundo.lista;
  */
 public class Usuarios {
 
-    private String cedula;
+    private int cedula;
     private String nombreUsuario;
     private String contrasena;
 
@@ -15,17 +15,17 @@ public class Usuarios {
 
     }
 
-    public Usuarios(String cedula, String nombreUsuario, String contrasena) {
+    public Usuarios(int cedula, String nombreUsuario, String contrasena) {
         this.cedula = cedula;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
     }
 
-    public String getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
-    public void setCedula(String cedula) {
+    public void setCedula(int cedula) {
         this.cedula = cedula;
     }
 

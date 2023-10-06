@@ -227,4 +227,9 @@ button:active
 {
     font-size: 25px;
 }
+
+.fa-solid .fa-envelope {
+  color: #ffffff;
+}
+
 </style>

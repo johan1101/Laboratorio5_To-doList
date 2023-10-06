@@ -25,7 +25,7 @@ background: transparent;
 {
     width: 100%;
     height: 100vh;
-    background-image: url('img/49387bf13e4f25e13ed796510093273a.png'); 
+    background-image: url('img/fondo.jpg'); 
     background-position: center;
     background-size: cover;
     } 
@@ -38,7 +38,7 @@ background: transparent;
     width: 75%;
     height: 75%;
     transform: translate(-50%, -50%);
-    background-image: url('img/49387bf13e4f25e13ed796510093273a.png');
+    background-image: url('img/fondo.jpg');
     background-position: center;
     background-size: cover;
     display: flex;
@@ -105,9 +105,9 @@ color: #fff;
 
 .login
 {
-width: 450px; 
+width: 500px; 
 position: relative; 
-padding: 100px 30px; 
+padding: 80px 30px; 
 backdrop-filter: blur(20px);
 }
 
@@ -115,7 +115,7 @@ backdrop-filter: blur(20px);
 {
 font-size: 2em; 
 text-align: center; 
-margin-bottom: 20px; 
+margin-bottom: 30px; 
 color: #fff;
 }
 
@@ -124,24 +124,30 @@ color: #fff;
 position: relative; 
 width: 100%; 
 height: 30px; 
-margin-bottom: 40px
+margin-bottom: 50px
 }
 
 .login .sign-up
 {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .login .sign-up a
 {
+    display: block;
     text-decoration: none;
     color: #fff;
     font-weight: 700;
 }
 .login .sign-up p
 {
+    display: block;
     color: #fff;
+    margin-right: 10px;
 }
 
 .sign-up a:hover
@@ -208,7 +214,7 @@ button
 {
     width: 100%;
     height: 40px;
-    background-color: #dc143c !important;
+    background-color: #025940 !important;
     border: none;
     outline: none;
     font-size: 20px;

@@ -7,7 +7,7 @@
 <!-- Section: Design Block -->
 
 <div class="background"></div>
-<form action="SvRegister" method="GET">
+<form action="SvLoginCheck" method="POST">
     <section class="home">
 
         <div class="content">

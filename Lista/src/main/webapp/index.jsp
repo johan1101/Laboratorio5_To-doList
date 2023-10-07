@@ -53,7 +53,8 @@
     });
 </script>
 <%    }
-    if (ingresar != null && ingresar.equals("no")) {
+    String valido=request.getParameter("valido");
+    if (valido != null && valido.equals("false")) {
 %>
 <script>
       $(document).ready(function () {
@@ -65,6 +66,7 @@
     // Elimina los atributos "registrado" e "ingresar" de la solicitud
     request.removeAttribute("registrado");
     request.removeAttribute("ingresar");
+    request.removeAttribute("valido");
 %>
 
 

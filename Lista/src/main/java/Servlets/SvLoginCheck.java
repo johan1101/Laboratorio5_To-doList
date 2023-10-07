@@ -60,7 +60,7 @@ public class SvLoginCheck extends HttpServlet {
         String user=Metodos.verificarUsuario(cedula,contrasenia, context);
          System.out.println(user);
         if (user.equals("No encontrado")){
-            request.getRequestDispatcher("index.jsp?valido="+false).forward(request, response);
+            request.getRequestDispatcher("index.jsp?valido="+"false").forward(request, response);
             
         } else if(!user.equals("No encontrado")){
             

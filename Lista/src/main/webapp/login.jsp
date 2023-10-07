@@ -2,7 +2,7 @@
 <%@include file= "templates/header.jsp" %>
 
 <!-- Navegador importado de bootstrap -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,7 @@
 <!-- Mensaje personalizado al ingresar -->
 <h1>Bienvenido, <%out.println(request.getParameter("usuarioI"));%><a href="index.jsp">Cerrar sesion</a></h1>
 
+<!-- Tabla -->
   <div class="container p-4"> 
             
             <div class="row">
@@ -49,19 +50,23 @@
             <div class="col-md-4">  <!-- clase division por 4 columnas -->
                <form>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  <label for="id" class="form-label">ID</label>
+                  <input type="number" name = "id" class="form-control">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <label for="titulo" class="form-label">Titulo</label>
+                  <input type="text" name = "titulo" class="form-control">
                 </div>
-                <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                   <div class="mb-3">
+                  <label for="descripcion" class="form-label">Descripción</label>
+                  <textarea  name = "descripcion" class="form-control" rows="3" cols="20"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                  <div class="mb-3">
+                  <label for="fecha" class="form-label">Fecha</label>
+                  <input type="date" name = "fecha" class="form-control">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Agregar Tarea</button>
               </form>
                     
             </div> 

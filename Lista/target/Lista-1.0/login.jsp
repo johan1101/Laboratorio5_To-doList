@@ -40,7 +40,8 @@
 </nav>
 
 <!-- Mensaje personalizado al ingresar -->
-<h1>Bienvenido, <%out.println(request.getParameter("usuarioI"));%><a href="index.jsp">Cerrar sesion</a></h1>
+
+<h5>Bienvenido, <%out.println(request.getParameter("usuarioI"));%>|<a href="index.jsp"> Cerrar sesion</a></h5>
 
 <!-- Tabla -->
   <div class="container p-4"> 
@@ -48,7 +49,8 @@
             <div class="row">
                 
             <div class="col-md-4">  <!-- clase division por 4 columnas -->
-               <form>
+               <div class="card card-body">
+                <form>
                 <div class="mb-3">
                   <label for="id" class="form-label">ID</label>
                   <input type="number" name = "id" class="form-control">
@@ -68,6 +70,7 @@
                 
                 <button type="submit" class="btn btn-primary">Agregar Tarea</button>
               </form>
+               </div>
                     
             </div> 
 
@@ -75,13 +78,15 @@
 
         <div class="col-md-8">
           <!-- poner tabla aquí-->
+             <div class="card card-body">
           <table class="table table-striped table-hover">
                 <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Id</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -90,20 +95,32 @@
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
+      <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
     </tr>
     <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
+       <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
     </tr>
     <tr>
       <th scope="row">3</th>
       <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td
+      <td>@twitter</td>
+        <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
 </tr>
+ <tr>
+      <th scope="row">4</th>
+        <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@twitter</td>
+       <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
+</tr>
+
   </tbody>
             </table>
+             </div>
         </div>
                 </div></div>
 

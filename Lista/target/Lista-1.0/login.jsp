@@ -1,128 +1,174 @@
 <!-- Inclución de la plantilla de header -->
 <%@include file= "templates/header.jsp" %>
+<%String usuario=request.getParameter("usuarioI");%>
 
 <!-- Navegador importado de bootstrap -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+
+<%@include file= "templates/navbar.jsp" %>
+
 
 <!-- Mensaje personalizado al ingresar -->
 
-<h5>Bienvenido, <%out.println(request.getParameter("usuarioI"));%>|<a href="index.jsp"> Cerrar sesion</a></h5>
+    <div class="container p-4"> 
+        <div class="card text-center">
+            <div class="card-header">
+            </div>
 
-<!-- Tabla -->
+            <div class="card-body">
+              <h5>Bienvenido, <%out.println(request.getParameter("usuarioI"));%></h5>
+              <a href="index.jsp" class="btn btn-outline-success"> Cerrar sesion</a>
+            </div>
+
+            <div class="card-footer text-body-secondary">
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    
   <div class="container p-4"> 
-            
-            <div class="row">
-                
-            <div class="col-md-4">  <!-- clase division por 4 columnas -->
+    <div class="row">
+        <div class="col-md-4">  <!-- clase division por 4 columnas -->
                <div class="card card-body">
-                <form>
-                <div class="mb-3">
-                  <label for="id" class="form-label">ID</label>
-                  <input type="number" name = "id" class="form-control">
-                </div>
-                <div class="mb-3">
-                  <label for="titulo" class="form-label">Titulo</label>
-                  <input type="text" name = "titulo" class="form-control">
-                </div>
-                   <div class="mb-3">
-                  <label for="descripcion" class="form-label">Descripción</label>
-                  <textarea  name = "descripcion" class="form-control" rows="3" cols="20"></textarea>
-                </div>
-                  <div class="mb-3">
-                  <label for="fecha" class="form-label">Fecha</label>
-                  <input type="date" name = "fecha" class="form-control">
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Agregar Tarea</button>
-              </form>
-               </div>
+                    <form class="row g-3 needs-validation" novalidate>
                     
+                    <!-- ID -->
+                    
+                    <div class="input-group">
+                        <label for="validationCustomUsername" class="form-label">Id</label>
+                        <div class="input-group">
+                                <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-id-card"></i></span>
+                                <input type="number" class="form-control" min="0" step="1"id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                
+                            <!-- Verificacion -->
+                            <div class="valid-feedback">
+                              Se mira bien!
+                            </div>
+                            <!-- En caso de no tener nada -->
+                            <div class="invalid-feedback">
+                              Introduce un id válido.
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <!-- Titulo -->
+                    
+                    <div class="input-group">
+                        <div class="input-group">
+                            <formu class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputValue" name="titulo" placeholder="Ingrese el Titulo" value="" required="">
+                                <label for="floatingInputValue">Titulo</label>
+                            <!-- Verificacion -->
+                            <div class="valid-feedback">
+                              Se mira bien!
+                            </div>
+                            <!-- En caso de no tener nada -->
+                            <div class="invalid-feedback">
+                              Introduce un titulo válido.
+                            </div> 
+                        </formu></div>
+                    </div>
+                    
+                    <!-- Descripcion -->
+              
+                    <div class="input-group">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-circle-info"></i></span>
+                            <textarea class="form-control" name="descripcion" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                            <!-- Verificacion -->
+                            <div class="valid-feedback">
+                              Se mira bien!
+                            </div>
+                                <!-- En caso de no tener nada -->
+                            <div class="invalid-feedback">
+                              Introduce una descripcion válida.
+                            </div> 
+                        </div>    
+                    </div>
+                    
+                    <!-- Fecha -->  
+                    <div class="input-group">
+                        <label for="validationCustom05" class="form-label">Fecha</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control"  name="fecha" id="validationCustom05" required>
+                            <!-- Verificacion -->
+                            <div class="valid-feedback">
+                              Se mira bien!
+                            </div>
+                            <!-- En caso de no tener nada -->
+                            <div class="invalid-feedback">
+                              Introduce una fecha válida.
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <!-- Boton centrado -->
+                    <center>
+                        <button type="submit" class="btn btn-outline-success">Agregar Tarea</button>
+                    </center>
+                </form>
+               </div>
+
             </div> 
 
-  
+    <div class="col-md-8">
+        <!-- poner tabla aquí-->
+        
+        <div class="card card-body">
+        <table class="table table-striped table-hover">
+            <!-- Primera fila -->   
+            <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Acciones</th>
+            </tr>
+            </thead>
 
-        <div class="col-md-8">
-          <!-- poner tabla aquí-->
-             <div class="card card-body">
-          <table class="table table-striped table-hover">
-                <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Titulo</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-       <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-        <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
-</tr>
- <tr>
-      <th scope="row">4</th>
-        <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@twitter</td>
-       <td> <i class="fa-solid fa-pen-clip"></i><i class="fa-solid fa-trash"></i> </td>
-</tr>
-
-  </tbody>
-            </table>
-             </div>
+            <!-- Contenido tabla -->
+            <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Trabajo</td>
+              <td>Realizar trabajo</td>
+              <td>2/10/2023</td>
+              <td> <a href="#" class="btn btn-outline-success"><i class="fa-solid fa-pen-clip"></i></a>
+                  <a href="#" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> </a></td>
+            </tr>
+            </tbody>
+        </table>
         </div>
-                </div></div>
+    </div>
+  </div></div>
+
+    <!-- Javascript para manejar la logica de los mensajes del required 
+    BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
+    
+<script> 
+    // Función de flecha que se ejecuta inmediatamente.
+    (() => {
+      'use strict'; // Modo estricto para un código más seguro y eficiente.
+
+      // Selecciona todos los elementos con la clase "needs-validation" y los almacena en la variable "forms".
+      const forms = document.querySelectorAll('.needs-validation');
+
+      // Itera sobre cada formulario encontrado.
+      Array.from(forms).forEach(form => {
+        // Agrega un evento "submit" a cada formulario.
+        form.addEventListener('submit', event => {
+          // Verifica si el formulario no es válido.
+          if (!form.checkValidity()) {
+            event.preventDefault(); // Previene el envío del formulario si no es válido.
+            event.stopPropagation(); // Detiene la propagación del evento para evitar otros manejadores de eventos.
+          }
+          form.classList.add('was-validated'); // Agrega la clase "was-validated" al formulario.
+        }, false);
+      });
+    })();
+</script>
 
 <!-- Inclución de la plantilla de footer -->
 <%@include file= "templates/footer.jsp" %>

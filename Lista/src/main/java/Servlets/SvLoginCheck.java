@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author jaime
+ * @author Johan Ordoñez - Maria Casanova - Cristhian Padilla
  */
 @WebServlet(name = "SvLoginCheck", urlPatterns = {"/SvLoginCheck"})
 public class SvLoginCheck extends HttpServlet {
@@ -25,46 +25,45 @@ public class SvLoginCheck extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SvLoginCheck</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SvLoginCheck at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+       
     }
 
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
+    /**
+     * Metodo POST para validar el LOGIN 
+     */
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /**
+         * Obtenemos variables
+         */
         int cedula=Integer.parseInt(request.getParameter("cedula"));
         String contrasenia=request.getParameter("contrasenia");
-        ServletContext context=getServletContext();
-        System.out.println(contrasenia);
-        System.out.println(cedula);
-       
-        String user=Metodos.verificarUsuario(cedula,contrasenia, context);
-         System.out.println(user);
+        
+        ServletContext context=getServletContext();// Contexto de servlet para obtener la PATH
+        
+        /**
+         * Llamamos al metodo para verificar si coincide la cedula y contraseña con los usuarios guardados
+         */
+        String user=Metodos.verificarUsuario(cedula,contrasenia, context); 
+        
+        // Verificar si ingresa o no 
+        
         if (user.equals("No encontrado")){
-            request.getRequestDispatcher("index.jsp?valido="+"false").forward(request, response);
+            
+            request.getRequestDispatcher("index.jsp?valido="+"false").forward(request, response);// Redirigimos al index con la variable no valida para mostrar mensaje al usuario.
             
         } else if(!user.equals("No encontrado")){
             
-            request.getRequestDispatcher("login.jsp?usuarioI="+user).forward(request, response);
+            request.getRequestDispatcher("login.jsp?usuarioI="+user).forward(request, response);// Redirigimos al login con el nombre de usuario para mostrar el mensaje personalizado.
         }
         
     }

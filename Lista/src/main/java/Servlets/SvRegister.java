@@ -1,5 +1,6 @@
 package Servlets;
 
+import com.mundo.lista.Metodos;
 import com.mundo.lista.Persistencia;
 import com.mundo.lista.Usuarios;
 import java.io.IOException;
@@ -27,51 +28,16 @@ public class SvRegister extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
-
-        System.out.println("Corriendo metodo doGet");
-
-        //Obtener la sesion actual
-        HttpSession session = request.getSession();
-
-        //Obtener el contexto del servlet
-        ServletContext context = getServletContext();
-
-        ArrayList<Usuarios> misUsuarios = new ArrayList<>();
-
-        //Cargar la lista de perros desde un archivo
-        Persistencia.leerArchivo(misUsuarios, context);
-
-        // Obtener datos del formulario enviados por POST
-        String ced = request.getParameter("cedula");
-
-        String contrasenia = request.getParameter("contrasenia");
-
-        int cedula = Integer.parseInt(ced);
-
-        for (Usuarios usuario : misUsuarios) {
-            if ((usuario.getCedula() == cedula) && (usuario.getContrasena().equals(contrasenia))) {
-                // Si la condición se cumple, redirige a login.jsp
-                response.sendRedirect("login.jsp");
-                return; // Termina la ejecución del método doGet
-            } else {
-                String ingresar = "no";
-                request.setAttribute("ingresar", ingresar);
-                // Redireccionar a la página de destino internamente en el servidor
-                RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-                dispatcher.forward(request, response);
-            }
-        }
-
+       
     }
 
     @Override
+    
+    /**
+     * Metodo POST para añadir usuario registrado.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-
-        System.out.println("Corriendo metodo doPost");
 
         //Obtener la sesion actual
         HttpSession session = request.getSession();
@@ -79,26 +45,45 @@ public class SvRegister extends HttpServlet {
         //Obtener el contexto del servlet
         ServletContext context = getServletContext();
 
-        ArrayList<Usuarios> misUsuarios = new ArrayList<>();
+        ArrayList<Usuarios> misUsuarios = new ArrayList<>(); //Array a cargar con el txt
 
         //Cargar la lista de perros desde un archivo
         Persistencia.leerArchivo(misUsuarios, context);
 
-        // Obtener datos del formulario enviados por POST
-        String cedula = request.getParameter("cedula");
+        //Obtener datos del formulario enviados por POST
+        int cedula = Integer.parseInt(request.getParameter("cedula"));
 
         String nombre = request.getParameter("nombre");
 
         String contrasenia = request.getParameter("contrasenia");
-
-        Usuarios user = new Usuarios(Integer.parseInt(cedula), nombre, contrasenia);
-
-        misUsuarios.add(user);
-
-        Persistencia.escribirArchivo(misUsuarios, context);
-
-        String registrado = "si";
-        request.setAttribute("registrado", registrado);
+        
+        /**
+         * Verificar si el usuario ya existe, en caso de hacerlo no se añade y muestra mensaje.
+         */
+        
+        if(Metodos.encontrarUsuariosIg(cedula, context)){
+            /**
+             * Si el usuario no existe, se añade.
+             */ 
+            Usuarios user = new Usuarios(cedula, nombre, contrasenia);//Añadimos un objeto de tipo Usuarios
+            
+            misUsuarios.add(user); //Lo agregamos al array
+            
+            Persistencia.escribirArchivo(misUsuarios, context);//Actualizamos el txt
+            
+            //Enviamos bandera que indica que se añadio exitosamente
+            String registrado = "si";
+            request.setAttribute("registrado", registrado);
+            
+        } else if(!Metodos.encontrarUsuariosIg(cedula, context)){
+            /**
+             * Si el usuario existe, no se añade.
+             */ 
+             
+            //Enviamos bandera que indica que NO se añadio exitosamente
+            String registrado = "no";
+            request.setAttribute("registrado", registrado);
+        }
 
         // Redireccionar a la página de destino internamente en el servidor
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

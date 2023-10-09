@@ -1,2 +1,7 @@
-com/mundo/lista/Metodos.class
-Servlets/SvLoginCheck.class
+com\mundo\lista\Metodos.class
+Servlets\SvLoginCheck.class
+Servlets\SvRegister.class
+com\mundo\lista\resources\JavaEE8Resource.class
+com\mundo\lista\Persistencia.class
+com\mundo\lista\JAXRSConfiguration.class
+com\mundo\lista\Usuarios.class

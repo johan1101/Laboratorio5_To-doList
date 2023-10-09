@@ -15,7 +15,7 @@ import javax.servlet.ServletContext;
 
 /**
  *
- * @author
+ * @author Johan Ordoñez - Maria Casanova - Cristhian Padilla
  */
 public class Persistencia {
 

@@ -12,9 +12,11 @@
     <section class="home">
         <!--Informacion de la pagina -->
         <div class="content">
-            <a href="#" class="logo"> Nalmi</a>
+            <a href="#" class="logo"><i class="fa-solid fa-list-check fa-xs"></i>  Nalmi  </a>
             <h2> Bienvenido! </h2>          
             <h3> Sistema Gestión de Tareas </h3>
+            <br>
+            <h3><img src="img/list .png" width="40%"</h3>
             <pre> </pre>
         </div>
         <!--Login-->
@@ -23,12 +25,12 @@
             <!--Cedula-->
             <div class="input">
                 <input type="text" class="input1" name="cedula" placeholder="Cédula Usuario" required>
-                 <i class="fa-solid fa-id-card fa-lg" style="color: #ffffff;"></i>
+                 <i class="fa-solid fa-id-card fa-lg" style="color: #499EBF;"></i>
             </div>
             <!--Contraseña-->
             <div class="input">
                 <input type="password" class="input1" name="contrasenia" placeholder="Contraseña" required>
-                <i class="fa-solid fa-lock fa-lg" style="color: #ffffff;"></i>
+                <i class="fa-solid fa-lock fa-lg" style="color: #499EBF;"></i>
             </div>
             <!--Boton ingresar-->
             <div class="button">
@@ -38,8 +40,8 @@
             <div class="sign-up">
                 <p>No tiene una cuenta?</p>
                 <!--Llama modal para registrarse-->
-                <ingresar type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
-                    <a href="#" >Registrese aqui</a>
+                <ingresar type="button" class="btn btn-outline-light"  style="color: black" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                    <a href="#" >Regístrese aqui</a>
                 </ingresar>
             </div>
         </div>
@@ -121,7 +123,6 @@
                 </div>
                 <!-- Footer con botones -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Registrar Usuario</button>
                 </div>
             </div>

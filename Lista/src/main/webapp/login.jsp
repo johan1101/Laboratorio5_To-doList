@@ -16,7 +16,7 @@
 
             <div class="card-body">
               <h5>Bienvenid@, <%out.println(request.getParameter("usuarioI"));%></h5>
-              <a href="index.jsp" class="btn btn-outline-success"> Cerrar sesion</a>
+              <a href="index.jsp" class="btn btn-outline-primary" > Cerrar sesion</a>
             </div>
 
             <div class="card-footer text-body-secondary">
@@ -105,7 +105,7 @@
                     
                     <!-- Boton centrado -->
                     <center>
-                        <button type="submit" class="btn btn-outline-success">Agregar Tarea</button>
+                        <button type="submit" class="btn btn-outline-primary">Agregar Tarea</button>
                     </center>
                 </form>
                </div>

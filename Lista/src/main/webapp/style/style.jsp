@@ -25,7 +25,7 @@ background: transparent;
 {
     width: 100%;
     height: 100vh;
-    background-image: url('img/fondo.jpg'); 
+    background-image: url('img/fondo2.jpg'); 
     background-position: center;
     background-size: cover;
     } 
@@ -38,7 +38,7 @@ background: transparent;
     width: 75%;
     height: 75%;
     transform: translate(-50%, -50%);
-    background-image: url('img/fondo.jpg');
+    background-image: url('img/fondo2.jpg'); 
     background-position: center;
     background-size: cover;
     display: flex;
@@ -60,7 +60,7 @@ padding: 100px 0;
 {
 position: relative; 
 text-decoration: none; 
-color: #fff; 
+color: black; 
 font-size: 3em; 
 font-weight: 700;
 top: -40px;
@@ -71,14 +71,14 @@ Left: 80px;
 {
 font-size: 3.5em; 
 text-align: center; 
-color: #fff;
+color: black;
 }
 
 .content h3
 {
 font-size: 2em;
 text-align: center; 
-color: #fff;
+color: black;
 }
 
 .content pre
@@ -86,7 +86,7 @@ color: #fff;
 margin-top: 20px;
 text-align: center; 
 font-size: 1em; 
-color: #fff;
+color: black;
 }
 
 .content .icon
@@ -100,7 +100,7 @@ justify-content: center;
 .content .icon i
 {
 margin-left: 20px; 
-color: #fff;
+color: black;
 }
 
 .login
@@ -116,7 +116,7 @@ backdrop-filter: blur(20px);
 font-size: 2em; 
 text-align: center; 
 margin-bottom: 30px; 
-color: #fff;
+color: black;
 }
 
 .login .input
@@ -140,13 +140,13 @@ margin-bottom: 50px
 {
     display: block;
     text-decoration: none;
-    color: #fff;
+    color: black;
     font-weight: 700;
 }
 .login .sign-up p
 {
     display: block;
-    color: #fff;
+    color: black;
     margin-right: 10px;
 }
 
@@ -165,15 +165,15 @@ align-items: center;
 background: transparent; 
 border: none; 
 outline: none;
-border-bottom: 2px solid #fff;
-color: #fff;
+border-bottom: 2px solid black;
+color: black;
 width: 100%;
 height: 100%;
 }
 
 ::placeholder
 {
-color: #fff; 
+color: black; 
 font-size: 18px;
 }
 
@@ -182,7 +182,7 @@ font-size: 18px;
 position: relative;
 right: -370px;
 bottom: 27px;
-color: #fff;
+color: black;
 }
 
 .check
@@ -190,12 +190,12 @@ color: #fff;
 display: flex;
 justify-content: space-between; 
 margin-bottom: 40px; 
-color: #fff;
+color: black;
 }
 
 .check a{
     text-decoration: none;
-    color: #fff;
+    color: black;
 }
 
 .check a:hover
@@ -214,7 +214,7 @@ button
 {
     width: 100%;
     height: 40px;
-    background-color: #025940 !important;
+    background-color: #499EBF !important;
     border: none;
     outline: none;
     font-size: 20px;
@@ -229,7 +229,7 @@ button:active
 }
 
 .fa-solid .fa-envelope {
-  color: #ffffff;
+  color: #black;
 } 
 
 </style>

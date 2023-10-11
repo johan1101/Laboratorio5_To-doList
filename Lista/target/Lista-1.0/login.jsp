@@ -15,7 +15,7 @@
             </div>
 
             <div class="card-body">
-              <h5>Bienvenido, <%out.println(request.getParameter("usuarioI"));%></h5>
+              <h5>Bienvenid@, <%out.println(request.getParameter("usuarioI"));%></h5>
               <a href="index.jsp" class="btn btn-outline-success"> Cerrar sesion</a>
             </div>
 
@@ -143,7 +143,7 @@
         </div>
     </div>
   </div></div>
-
+    
     <!-- Javascript para manejar la logica de los mensajes del required 
     BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
     
@@ -168,6 +168,7 @@
         }, false);
       });
     })();
+  
 </script>
 
 <!-- Inclución de la plantilla de footer -->

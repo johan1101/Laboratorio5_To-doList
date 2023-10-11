@@ -143,48 +143,86 @@
         </div>
 </div>
 
-<!-- Modal registro NO exitoso-->
-<div class="modal fade" id="noRegistrado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="noRegistradoLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h5>Alguien con la misma cedula existe, intenta ingresar!</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-</div>
-
-<!-- Modal datos de ingreso incorrectos-->
-<div class="modal fade" id="datosIncorrectos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="datosIncorrectosLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h2>Datos incorrectos</h2>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<!-- Inclución de la plantilla de header -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+<!-- Script para llamar los toastr. BASADO: https://codeseven.github.io/toastr/demo.html
+    BASADO: https://getbootstrap.com/docs/5.3/components/toasts/-->
 <script>
     function usuarioR() {
-        $("#registrado").modal("show");
+        toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    
+    // Mostrar una notificación Toastr de error
+    toastr.success('Se ha registrado exitosamente!', 'Registrado');
     }
     
     function usuarioNoI(){
-        $("#datosIncorrectos").modal("show");
+         toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    
+    // Mostrar una notificación Toastr de error
+    toastr.warning('La cedula o contraseña no son correctas', 'No ha podido ingresar');
     }
     
-    function usuarioNoR(){
-        $("#noRegistrado").modal("show");
-    }
+    
+   function usuarioNoR() {
+    // Configurar opciones Toastr
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    
+    // Mostrar una notificación Toastr de error
+    toastr.error('Ya existe un usuario registrado con esa cedula', 'Error');
+}
+
 </script>
 
 

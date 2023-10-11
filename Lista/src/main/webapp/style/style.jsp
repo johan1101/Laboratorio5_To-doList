@@ -230,6 +230,6 @@ button:active
 
 .fa-solid .fa-envelope {
   color: #ffffff;
-}
+} 
 
 </style>

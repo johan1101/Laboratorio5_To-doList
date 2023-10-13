@@ -24,7 +24,7 @@
             <h2>Ingresar</h2>
             <!--Cedula-->
             <div class="input">
-                <input type="text" class="input1" name="cedula" placeholder="Cédula Usuario" required>
+                <input type="text" class="input1" name="cedula" placeholder="Cédula Usuario" maxlength="10" required pattern="[0-9]+" title="Solo se permiten números">
                  <i class="fa-solid fa-id-card fa-lg" style="color: #499EBF;"></i>
             </div>
             <!--Contraseña-->
@@ -105,7 +105,7 @@
                     <!-- Cedula -->
                     <br>
                     <formu class="form-floating">
-                        <input type="number" min="0" step="1" class="form-control" id="floatingInputValue" name="cedula" placeholder="Ingrese su cédula" value="" required>
+                        <input type="text" class="form-control" id="floatingInputValue" name="cedula" placeholder="Ingrese su cédula" value="" maxlength="10" required pattern="[0-9]+" title="Solo se permiten números">
                         <label for="floatingInputValue">Cédula</label>
                     </formu>
                     <!-- Usuario -->

@@ -4,8 +4,14 @@
  */
 package Servlets;
 
+import com.mundo.lista.ListaEnlazada;
 import com.mundo.lista.Metodos;
+import com.mundo.lista.Tareas;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,52 +26,76 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SvLoginCheck", urlPatterns = {"/SvLoginCheck"})
 public class SvLoginCheck extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-    }
 
-   
+    }
+    
+            ListaEnlazada listaTareas = new ListaEnlazada();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {     
+            throws ServletException, IOException {
+        // Recibir los parámetros del formulario
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        String titulo = request.getParameter("titulo");
+        String descripcion = request.getParameter("descripcion");
+        String fechaStr = request.getParameter("fecha");
+                
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha = null;
+
+        try {
+            fecha = sdf.parse(fechaStr);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Manejo de error en caso de que la fecha no sea válida
+        };
+
+        
+        Tareas nuevaTarea = new Tareas(id, titulo, descripcion, fecha);
+
+        listaTareas.agregarTarea(nuevaTarea);
+        
+        listaTareas.mostrarTareas();
+
+        // Redireccionar a la página de destino internamente en el servidor
+        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
-     * Metodo POST para validar el LOGIN 
+     * Metodo POST para validar el LOGIN
      */
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         /**
          * Obtenemos variables
          */
-        int cedula=Integer.parseInt(request.getParameter("cedula"));
-        String contrasenia=request.getParameter("contrasenia");
-        
-        ServletContext context=getServletContext();// Contexto de servlet para obtener la PATH
-        
+        int cedula = Integer.parseInt(request.getParameter("cedula"));
+        String contrasenia = request.getParameter("contrasenia");
+
+        ServletContext context = getServletContext();// Contexto de servlet para obtener la PATH
+
         /**
-         * Llamamos al metodo para verificar si coincide la cedula y contraseña con los usuarios guardados
+         * Llamamos al metodo para verificar si coincide la cedula y contraseña
+         * con los usuarios guardados
          */
-        String user=Metodos.verificarUsuario(cedula,contrasenia, context); 
-        
+        String user = Metodos.verificarUsuario(cedula, contrasenia, context);
+
         // Verificar si ingresa o no 
-        
-        if (user.equals("No encontrado")){
-            
-            request.getRequestDispatcher("index.jsp?valido="+"false").forward(request, response);// Redirigimos al index con la variable no valida para mostrar mensaje al usuario.
-            
-        } else if(!user.equals("No encontrado")){
-            
-            request.getRequestDispatcher("login.jsp?usuarioI="+user).forward(request, response);// Redirigimos al login con el nombre de usuario para mostrar el mensaje personalizado.
+        if (user.equals("No encontrado")) {
+
+            request.getRequestDispatcher("index.jsp?valido=" + "false").forward(request, response);// Redirigimos al index con la variable no valida para mostrar mensaje al usuario.
+
+        } else if (!user.equals("No encontrado")) {
+
+            request.getRequestDispatcher("login.jsp?usuarioI=" + user).forward(request, response);// Redirigimos al login con el nombre de usuario para mostrar el mensaje personalizado.
         }
-        
+
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -4,13 +4,14 @@
  */
 package com.mundo.lista;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Johan Ordoñez - Maria Casanova - Padilla
  */
-public class Tareas {
+public class Tareas implements Serializable {
     private int id;
     private String titulo;
     private String descripcion;

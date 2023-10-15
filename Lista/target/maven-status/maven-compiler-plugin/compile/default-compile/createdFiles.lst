@@ -8,3 +8,4 @@ com\mundo\lista\JAXRSConfiguration.class
 com\mundo\lista\NodoTarea.class
 com\mundo\lista\Usuarios.class
 com\mundo\lista\Tareas.class
+com\mundo\lista\Serializacion.class

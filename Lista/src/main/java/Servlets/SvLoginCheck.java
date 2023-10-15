@@ -6,11 +6,14 @@ package Servlets;
 
 import com.mundo.lista.ListaEnlazada;
 import com.mundo.lista.Metodos;
+import com.mundo.lista.Serializacion;
 import com.mundo.lista.Tareas;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -30,19 +33,31 @@ public class SvLoginCheck extends HttpServlet {
             throws ServletException, IOException {
 
     }
-    
-            ListaEnlazada listaTareas = new ListaEnlazada();
+
+    ListaEnlazada listaTareas = new ListaEnlazada();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Recibir los parámetros del formulario
 
+        
+        //Obtener el contexto del servlet
+        ServletContext context = getServletContext();
+        try {
+            listaTareas = Serializacion.leerTareas(context);Serializacion.leerTareas(context);
+            if(listaTareas == null){
+                listaTareas = new ListaEnlazada();
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SvLoginCheck.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Recibir los parámetros del formulario
         int id = Integer.parseInt(request.getParameter("id"));
         String titulo = request.getParameter("titulo");
         String descripcion = request.getParameter("descripcion");
         String fechaStr = request.getParameter("fecha");
-                
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date fecha = null;
 
@@ -52,11 +67,12 @@ public class SvLoginCheck extends HttpServlet {
             e.printStackTrace(); // Manejo de error en caso de que la fecha no sea válida
         };
 
-        
         Tareas nuevaTarea = new Tareas(id, titulo, descripcion, fecha);
 
         listaTareas.agregarTarea(nuevaTarea);
-        
+
+        Serializacion.escribirArchivo(listaTareas, context);
+
         listaTareas.mostrarTareas();
 
         // Redireccionar a la página de destino internamente en el servidor

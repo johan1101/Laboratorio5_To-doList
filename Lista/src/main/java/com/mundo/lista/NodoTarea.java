@@ -4,14 +4,16 @@
  */
 package com.mundo.lista;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Johan Ordoñez - Maria Casanova - Padilla
  */
-public class NodoTarea {
+public class NodoTarea implements Serializable{
 
-    Tareas tarea;
-    NodoTarea siguiente;
+    public static Tareas tarea;
+    public static NodoTarea siguiente;
 
     public NodoTarea(Tareas tarea) {
         this.tarea = tarea;

@@ -1,3 +1,8 @@
+<%@page import="com.mundo.lista.Serializacion"%>
+<%@page import="com.mundo.lista.ListaEnlazada"%>
+<%@page import="com.mundo.lista.Tareas"%>
+<%@page import="com.mundo.lista.NodoTarea"%>
+
 <!-- Inclución de la plantilla de header -->
 <%@include file= "templates/header.jsp" %>
 <%String usuario = request.getParameter("usuarioI");%>
@@ -130,14 +135,22 @@
 
                     <!-- Contenido tabla -->
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Trabajo</td>
-                            <td>Realizar trabajo</td>
-                            <td>2/10/2023</td>
-                            <td> <a href="#" class="btn btn-outline-success"><i class="fa-solid fa-pen-clip"></i></a>
-                                <a href="#" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> </a></td>
-                        </tr>
+                        <%
+                            ListaEnlazada listaTareas = new ListaEnlazada();
+                            // Obtener el contexto del servlet
+                            ServletContext context = getServletContext();
+
+                            listaTareas = Serializacion.leerTareas(context);
+                            if (listaTareas == null) {
+                                listaTareas = new ListaEnlazada();
+                            }
+
+                            String tablaHTML = listaTareas.generarTablaTareas();
+                        %>
+<div>
+    <%= tablaHTML %>
+</div>
+
                     </tbody>
                 </table>
             </div>

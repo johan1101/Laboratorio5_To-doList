@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -76,8 +75,8 @@ public class SvLoginCheck extends HttpServlet {
         listaTareas.mostrarTareas();
 
         // Redireccionar a la página de destino internamente en el servidor
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-        dispatcher.forward(request, response);
+            // Redireccionar a la página de destino
+            response.sendRedirect("login.jsp");
     }
 
     /**

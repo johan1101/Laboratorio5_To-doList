@@ -10,11 +10,11 @@ import java.io.Serializable;
  *
  * @author
  */
-public class Lista implements Serializable{
+public class Lista implements Serializable {
 
     private Nodo cabeza;
 
-    private class Nodo implements Serializable{
+    private class Nodo implements Serializable {
 
         public Tareas tarea;
         public Nodo siguiente = null;
@@ -28,6 +28,43 @@ public class Lista implements Serializable{
         Nodo nodo = new Nodo(tarea);
         nodo.siguiente = cabeza;
         cabeza = nodo;
+    }
+
+    public int longitud() {
+        Nodo actual = cabeza;
+        int longitud = 0;
+        while (actual != null) {
+            Tareas tarea = actual.tarea;
+            longitud = longitud + 1;
+            actual = actual.siguiente;
+        }
+        return longitud;
+    }
+
+    public void eliminarTarea(int id) {
+        if (cabeza != null) {
+            // Caso especial: eliminación del primer elemento
+            if (cabeza.tarea.getId() == id) {
+                Nodo primer = cabeza;
+                cabeza = cabeza.siguiente;
+                primer.siguiente = null;
+                return;  // Tarea eliminada, salimos del método
+            }
+
+            Nodo anterior = cabeza;
+            Nodo actual = cabeza.siguiente;
+
+            while (actual != null) {
+                if (actual.tarea.getId() == id) {
+                    // Encontramos la tarea a eliminar
+                    anterior.siguiente = actual.siguiente;
+                    actual.siguiente = null;
+                    return;  // Tarea eliminada, salimos del método
+                }
+                anterior = actual;
+                actual = actual.siguiente;
+            }
+        }
     }
 
     public void mostrarTareas() {
@@ -58,7 +95,7 @@ public class Lista implements Serializable{
 
             // Botones
             tablaHTML.append("<td><a href=\"#\" class=\"btn btn-outline-success\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
-            tablaHTML.append("<a href=\"#\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></a></td>");
+            tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
 
             tablaHTML.append("</tr>");
             actual = actual.siguiente;

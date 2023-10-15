@@ -1,7 +1,7 @@
+<%@page import="com.mundo.lista.Lista"%>
 <%@page import="com.mundo.lista.Serializacion"%>
-<%@page import="com.mundo.lista.ListaEnlazada"%>
 <%@page import="com.mundo.lista.Tareas"%>
-<%@page import="com.mundo.lista.NodoTarea"%>
+
 
 <!-- Inclución de la plantilla de header -->
 <%@include file= "templates/header.jsp" %>
@@ -136,16 +136,16 @@
                     <!-- Contenido tabla -->
                     <tbody>
                         <%
-                            ListaEnlazada listaTareas = new ListaEnlazada();
+                            Lista listaTareas = new Lista();
                             // Obtener el contexto del servlet
                             ServletContext context = getServletContext();
 
                             listaTareas = Serializacion.leerTareas(context);
                             if (listaTareas == null) {
-                                listaTareas = new ListaEnlazada();
+                                listaTareas = new Lista();
                             }
 
-                            String tablaHTML = listaTareas.generarTablaTareas();
+                            String tablaHTML = listaTareas.generarTabla();
                         %>
 <div>
     <%= tablaHTML %>

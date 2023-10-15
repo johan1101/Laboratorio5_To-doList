@@ -4,7 +4,7 @@
  */
 package Servlets;
 
-import com.mundo.lista.ListaEnlazada;
+import com.mundo.lista.Lista;
 import com.mundo.lista.Metodos;
 import com.mundo.lista.Serializacion;
 import com.mundo.lista.Tareas;
@@ -34,7 +34,7 @@ public class SvLoginCheck extends HttpServlet {
 
     }
 
-    ListaEnlazada listaTareas = new ListaEnlazada();
+    Lista listaTareas = new Lista();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,9 +44,9 @@ public class SvLoginCheck extends HttpServlet {
         //Obtener el contexto del servlet
         ServletContext context = getServletContext();
         try {
-            listaTareas = Serializacion.leerTareas(context);Serializacion.leerTareas(context);
+            listaTareas = Serializacion.leerTareas(context);
             if(listaTareas == null){
-                listaTareas = new ListaEnlazada();
+                listaTareas = new Lista();
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SvLoginCheck.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,7 +69,7 @@ public class SvLoginCheck extends HttpServlet {
 
         Tareas nuevaTarea = new Tareas(id, titulo, descripcion, fecha);
 
-        listaTareas.agregarTarea(nuevaTarea);
+        listaTareas.insertarPrincipio(nuevaTarea);
 
         Serializacion.escribirArchivo(listaTareas, context);
 

@@ -39,7 +39,7 @@ public class SvLoginCheck extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
+          String nombre = request.getParameter("usuarioI");
         //Obtener el contexto del servlet
         ServletContext context = getServletContext();
         try {
@@ -65,18 +65,26 @@ public class SvLoginCheck extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace(); // Manejo de error en caso de que la fecha no sea válida
         };
+        
+        String an="";
+        
+        if(!listaTareas.existenId(id)){
+            Tareas nuevaTarea = new Tareas(id, titulo, descripcion, fecha);
 
-        Tareas nuevaTarea = new Tareas(id, titulo, descripcion, fecha);
+            listaTareas.insertarPrincipio(nuevaTarea);
 
-        listaTareas.insertarPrincipio(nuevaTarea);
+            Serializacion.escribirArchivo(listaTareas, context);
+            
+            listaTareas.mostrarTareas();
+            an="si";
+        } else {
+            an="no";
+        }
 
-        Serializacion.escribirArchivo(listaTareas, context);
-
-        listaTareas.mostrarTareas();
 
         // Redireccionar a la página de destino internamente en el servidor
             // Redireccionar a la página de destino
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login.jsp?usuarioI="+nombre+"&add="+an);
     }
 
     /**

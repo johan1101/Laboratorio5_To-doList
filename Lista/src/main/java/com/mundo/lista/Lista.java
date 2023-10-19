@@ -23,12 +23,81 @@ public class Lista implements Serializable {
             this.tarea = tarea;
         }
     }
+    
+        //------------------------------------
 
     public void insertarPrincipio(Tareas tarea) {
         Nodo nodo = new Nodo(tarea);
         nodo.siguiente = cabeza;
         cabeza = nodo;
     }
+    
+        //------------------------------------
+
+    public void insertarFinal(Tareas tarea) {
+        Nodo nodo = new Nodo(tarea);
+        if (cabeza == null) {
+            cabeza = nodo;  // Si la lista está vacía, el nuevo nodo se convierte en la cabeza
+        } else {
+            Nodo actual = cabeza;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
+            }
+            actual.siguiente = nodo;  // Agregar el nuevo nodo al final de la lista
+        }
+    }
+    
+        //------------------------------------
+
+    public void insertarDespuesDe(int idAnterior, Tareas nuevaTarea) {
+        Nodo nuevoNodo = new Nodo(nuevaTarea);
+        Nodo actual = cabeza;
+
+        while (actual != null) {
+            if (actual.tarea.getId() == idAnterior) {
+                nuevoNodo.siguiente = actual.siguiente;
+                actual.siguiente = nuevoNodo;
+                return;  // Terminar después de insertar la nueva tarea
+            }
+            actual = actual.siguiente;
+        }
+    }
+   
+    //------------------------------------
+
+    public void insertarAntesDe(int idAnterior, Tareas nuevaTarea) {
+        Nodo nuevoNodo = new Nodo(nuevaTarea);
+
+        if (cabeza == null) {
+            // Si la lista está vacía, simplemente inserta la nueva tarea como la cabeza
+            cabeza = nuevoNodo;
+            return;
+        }
+
+        
+        if (cabeza.tarea.getId() == idAnterior) {
+            // Si la cabeza de la lista tiene el ID anterior, ajusta la cabeza
+            nuevoNodo.siguiente = cabeza;
+            cabeza = nuevoNodo;
+            return;
+        }
+
+        Nodo anterior = cabeza;
+        Nodo actual = cabeza.siguiente;
+
+        while (actual != null) {
+            if (actual.tarea.getId() == idAnterior) {
+                // Inserta la nueva tarea antes de la tarea con el ID especificado
+                anterior.siguiente = nuevoNodo;
+                nuevoNodo.siguiente = actual;
+                return;
+            }
+            anterior = actual;
+            actual = actual.siguiente;
+        }
+    }
+    
+        //------------------------------------
 
     public int longitud() {
         Nodo actual = cabeza;
@@ -103,6 +172,22 @@ public class Lista implements Serializable {
         tablaHTML.append("</table>");  // Cierra la tabla
 
         return tablaHTML.toString();
+    }
+
+    public boolean existenId(int id) {
+        Nodo actual = cabeza;
+        boolean encontrado = false;
+        while (actual != null && !encontrado) {
+
+            Tareas tarea = actual.tarea;
+            if (tarea.getId() == id) {
+                encontrado = true;
+            }
+
+            actual = actual.siguiente;
+        }
+
+        return encontrado;
     }
 
 }

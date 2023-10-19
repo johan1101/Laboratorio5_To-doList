@@ -11,6 +11,34 @@
 
 <%@include file= "templates/navbar.jsp" %>
 
+<%
+    
+    String añadido=request.getParameter("add");
+    System.out.println("----------------------");
+    System.out.println(añadido);
+    
+    if (añadido != null && añadido.equals("no")) {
+%>
+    <!--Llama metodo de JS para mostrar la modal de NO ingresado existosamente-->
+    <script>
+          $(document).ready(function () {
+            tareaNo();
+            
+        });
+    </script>
+<%  request.removeAttribute("add");
+    }else if(añadido != null && añadido.equals("si")){
+    %>
+    <!--Llama metodo de JS para mostrar la modal de NO ingresado existosamente-->
+    <script>
+          $(document).ready(function () {
+            tareaSi();
+        });
+    </script>
+    <% request.removeAttribute("add");
+}
+
+%>
 
 <!-- Mensaje personalizado al ingresar -->
 
@@ -36,7 +64,7 @@
         <div class="col-md-4">  <!-- clase division por 4 columnas -->
             <div class="card card-body">
                 <form class="row g-3 needs-validation" action="SvLoginCheck" method="GET" novalidate >
-
+                    <input type="hidden" name="usuarioI" value="<%=usuario%>">
                     <!-- ID -->
 
                     <div class="input-group">
@@ -44,7 +72,7 @@
                         <div class="input-group">
                             <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-id-card"></i></span>
                             <input type="number" name="id" class="form-control" min="0" step="1"id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-
+                           
                             <!-- Verificacion -->
                             <div class="valid-feedback">
                                 Se mira bien!
@@ -176,6 +204,52 @@
 BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
 
 <script>
+    
+    function tareaSi() {
+        toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    
+    // Mostrar una notificación Toastr de error
+    toastr.success('Se ha añadido exitosamente!', 'Registrado');
+    }
+    
+    function tareaNo(){
+         toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    
+    // Mostrar una notificación Toastr de error
+    toastr.warning('no', 'No ha podido ingresar');
+    }
     // Función de flecha que se ejecuta inmediatamente.
     (() => {
         'use strict'; // Modo estricto para un código más seguro y eficiente.
@@ -243,8 +317,10 @@ BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
             }
         });
     }
+     
 
 </script>
+
 
 <!-- Inclución de la plantilla de footer -->
 <%@include file= "templates/footer.jsp" %>

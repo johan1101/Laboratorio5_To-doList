@@ -25,8 +25,8 @@ background: transparent;
 {
     width: 100%;
     height: 100vh;
-    background-image: url('img/fondo2.jpg'); 
-    background-position: center;
+      background: linear-gradient(0deg,#B7D1E2,#AFC5D9,#DADAE2, #AFC5D9,#B7D1E2);
+    backgronud-position: center;
     background-size: cover;
     } 
     
@@ -108,7 +108,8 @@ color: black;
 width: 500px; 
 position: relative; 
 padding: 80px 30px; 
-backdrop-filter: blur(20px);
+background-color: white;    
+backdrop-filter: blur(100px);
 }
 
 .login h2

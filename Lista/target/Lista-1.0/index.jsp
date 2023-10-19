@@ -10,15 +10,6 @@
 <!--Formulario que se envia por POST -->
 <form action="SvLoginCheck" method="POST">
     <section class="home">
-        <!--Informacion de la pagina -->
-        <div class="content">
-            <a href="#" class="logo"><i class="fa-solid fa-list-check fa-xs"></i>  Nalmi  </a>
-            <h2> Bienvenido! </h2>          
-            <h3> Sistema Gestión de Tareas </h3>
-            <br>
-            <h3><img src="img/list .png" width="40%"</h3>
-            <pre> </pre>
-        </div>
         <!--Login-->
         <div class="login">
             <h2>Ingresar</h2>
@@ -44,6 +35,15 @@
                     <a href="#" >Regístrese aqui</a>
                 </ingresar>
             </div>
+        </div>
+                <!--Informacion de la pagina -->
+        <div class="content">
+            <a href="#" class="logo"><i class="fa-solid fa-list-check fa-xs"></i>  Nalmi  </a>
+            <h2> Bienvenido! </h2>          
+            <h3> Sistema Gestión de Tareas </h3>
+            <br>
+            <h3><img src="img/vector.png" width="40%"</h3>
+            <pre> </pre>
         </div>
     </section>
 </form>

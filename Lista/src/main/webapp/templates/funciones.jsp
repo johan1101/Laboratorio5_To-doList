@@ -42,7 +42,7 @@
     };
     
     // Mostrar una notificación Toastr de error
-    toastr.error('Ya existe una tarea con este id, intenta con otro!', 'No se ha podido registrar');
+    toastr.error('No se ha añadido exitosamente, intenta de nuevo!', 'No se ha podido guardar');
     }
     // Función de flecha que se ejecuta inmediatamente.
     (() => {

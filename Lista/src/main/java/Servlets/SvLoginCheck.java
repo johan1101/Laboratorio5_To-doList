@@ -80,7 +80,7 @@ public class SvLoginCheck extends HttpServlet {
                     an="si";
                     break;
                 case "ant":
-                    if(idUbi != null){
+                    if(!idUbi.equals("")){
                        listaTareas.insertarAntesDe(Integer.parseInt(idUbi), nuevaTarea);
                         an="si"; 
                     } else{
@@ -92,8 +92,7 @@ public class SvLoginCheck extends HttpServlet {
                     an="si";
                     break;
                 case "desp":
-                    System.out.println("===============>"+idUbi);
-                    if(idUbi2 != null){
+                    if(!idUbi2.equals("")){
                        listaTareas.insertarDespuesDe(Integer.parseInt(idUbi2), nuevaTarea);
                         an="si"; 
                     } else{

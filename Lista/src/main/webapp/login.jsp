@@ -26,7 +26,7 @@
             
         });
     </script>
-<%  request.removeAttribute("add");
+<%  
     }else if(añadido != null && añadido.equals("si")){
     %>
     <!--Llama metodo de JS para mostrar la modal de NO ingresado existosamente-->
@@ -35,9 +35,9 @@
             tareaSi();
         });
     </script>
-    <% request.removeAttribute("add");
+    <% 
 }
-
+request.removeAttribute("add");
 %>
 
 <!-- Mensaje personalizado al ingresar -->
@@ -108,7 +108,7 @@
                         <label for="descripcion" class="form-label">Descripción</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-circle-info"></i></span>
-                            <textarea class="form-control" name="descripcion" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                            <textarea class="form-control" name="descripcion" id="validationTextarea" placeholder="Ingrese la decripcion" required></textarea>
                             <!-- Verificacion -->
                             <div class="valid-feedback">
                                 Se mira bien!
@@ -200,6 +200,121 @@
     </div>
 </div>
 
+<!-- Modal editar tarea-->
+
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edita la tarea #<span id="tareaId"></span> </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+            <center>
+            <button type="button" id="btnPasarVariable" class="btn btn-outline-primary" data-bs-toggle="modal">Editar Titulo</button>  
+            <button type="button" id="btnPasarVariable1" class="btn btn-outline-primary" data-bs-toggle="modal">Editar Descripcion</button>
+            <button type="button" id="btnPasarVariable2" class="btn btn-outline-primary" data-bs-toggle="modal">Editar Fecha</button>
+            </center>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal editar titulo-->
+<div class="modal fade" id="edTit" tabindex="-1" aria-labelledby="editTitLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar titulo  <span id="idEditar" hidden></span></h5>
+            </div>
+
+                <div class="modal-body">
+                    <form action="SvEliminarEditar" method="POST" class="d-flex">
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-signature"></i></span>
+                        <input type="text" name="tituloNuev" class="form-control" required>
+                        <input type="text" name="edit" value="tit" hidden>
+                        <input type="text" name="idEd" class="form-control" hidden required>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Actualizar</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModalConfirm" >Cancelar</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- Modal editar Descripcion-->
+<div class="modal fade" id="edDes" tabindex="-1" aria-labelledby="editTitLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            
+                <div class="modal-header">
+                     <h5 class="modal-title">Editar Descripcion <span id="idEditar" hidden></span></h5>
+            </div>
+
+                <div class="modal-body">
+                    <form action="SvEliminarEditar" method="POST" class="d-flex">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-circle-info"></i></span>
+                        <textarea class="form-control" name="desNuev" id="validationTextarea" placeholder="Ingrese la decripcion" required></textarea>
+                        <input type="text" name="edit" value="des" hidden>
+                        <input type="text" name="idEd" class="form-control" hidden>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Actualizar</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModalConfirm" >Cancelar</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- Modal editar Fecha-->
+<div class="modal fade" id="edFec" tabindex="-1" aria-labelledby="editTitLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            
+                <div class="modal-header">
+                     <h5 class="modal-title">Editar Fecha<span id="idEditar"></span></h5>
+            </div>
+
+                <div class="modal-body">
+                    <form action="SvEliminarEditar" method="POST" class="d-flex">
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-signature"></i></span>
+                        <input type="date" class="form-control"  name="fecNuev" id="validationCustom05" required>
+                        <input type="text" name="edit" value="fec" hidden>
+                        <input type="text" name="idEd" class="form-control" >
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Actualizar</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModalConfirm" >Cancelar</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal editar descripcion-->
+
+
+
+<!-- Modal editar fecha-->
+
+
 <!-- Javascript para manejar la logica de los mensajes del required 
 BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
 
@@ -207,7 +322,7 @@ BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
     
     function tareaSi() {
         toastr.options = {
-        "closeButton": false,
+        "closeButton": true,
         "debug": false,
         "newestOnTop": false,
         "progressBar": false,
@@ -230,7 +345,7 @@ BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
     
     function tareaNo(){
          toastr.options = {
-        "closeButton": false,
+        "closeButton": true,
         "debug": false,
         "newestOnTop": false,
         "progressBar": false,
@@ -248,7 +363,7 @@ BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
     };
     
     // Mostrar una notificación Toastr de error
-    toastr.warning('no', 'No ha podido ingresar');
+    toastr.error('Ya existe una tarea con este id, intenta con otro!', 'No se ha podido registrar');
     }
     // Función de flecha que se ejecuta inmediatamente.
     (() => {
@@ -286,6 +401,8 @@ BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
 
         // Obtiene el modal actual
         var modal = $(this);
+        
+        var titNuev =
 
         // Almacena el nombre de la tarea en la variable global 'id'
         id = idTarea;
@@ -317,7 +434,72 @@ BASADO:   https://getbootstrap.com/docs/5.3/forms/validation/   -->
             }
         });
     }
-     
+
+    $('#editar').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var idTarea = button.data('nombre');
+    
+    // Mostrar el ID de la tarea en el modal
+    $('#tareaId').text(idTarea);
+
+    // También puedes almacenar el ID en una variable global si necesitas acceder a él en otros lugares del código.
+    tareaId = idTarea;
+});
+
+// JavaScript para modal1
+$('#editar').on('show.bs.modal', function (event) {
+    // Al hacer clic en el botón, pasa la variable tareaId a modal2
+    $('#btnPasarVariable').click(function () {
+        $('#edTit').data('tareaId', tareaId);
+        $('#edTit').modal('show'); // Muestra modal2
+    });
+    $('#btnPasarVariable1').click(function () {
+        $('#edDes').data('tareaId', tareaId);
+        $('#edDes').modal('show'); // Muestra modal2
+    });
+    $('#btnPasarVariable2').click(function () {
+        $('#edFec').data('tareaId', tareaId);
+        $('#edFec').modal('show'); // Muestra modal2
+    });
+});
+// JavaScript para modal2
+$('#edTit').on('show.bs.modal', function (event) {
+    // Obtiene la variable pasada desde modal1 y la muestra en modal2
+    var tareaId = $('#edTit').data('tareaId');
+    $('#idEditar').text(tareaId);
+    
+    var inputElement = $('#edTit').find('input[name="idEd"]');
+    
+    inputElement.val($('#idEditar').text());
+    
+   
+});
+
+$('#edDes').on('show.bs.modal', function (event) {
+    // Obtiene la variable pasada desde modal1 y la muestra en modal2
+    var tareaId = $('#edDes').data('tareaId');
+    $('#idEditar').text(tareaId);
+    
+    var inputElement = $('#edDes').find('input[name="idEd"]');
+    
+    inputElement.val($('#idEditar').text());
+    
+   
+});
+
+$('#edFec').on('show.bs.modal', function (event) {
+    // Obtiene la variable pasada desde modal1 y la muestra en modal2
+    var tareaId = $('#edFec').data('tareaId');
+    $('#idEditar').text(tareaId);
+    
+    var inputElement = $('#edFec').find('input[name="idEd"]');
+    
+    inputElement.val($('#idEditar').text());
+    
+   
+});
+
+
 
 </script>
 

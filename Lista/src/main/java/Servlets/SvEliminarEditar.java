@@ -6,9 +6,14 @@ package Servlets;
 
 import com.mundo.lista.Lista;
 import com.mundo.lista.Serializacion;
+import com.mundo.lista.Tareas;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,7 +71,48 @@ public class SvEliminarEditar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+       //Obtener el contexto del servlet
+        ServletContext context = getServletContext();
+        
+        try {
+            listaTareas = Serializacion.leerTareas(context);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SvEliminarEditar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String edit = request.getParameter("edit");
+        int id=Integer.parseInt( request.getParameter("idEd"));
+        
+        switch(edit){
+            case"tit":
+                String titulo = request.getParameter("tituloNuev"); 
+                listaTareas.editarTitulo(id,titulo);              
+                break;
+            case "des":
+                String descripcion = request.getParameter("desNuev"); 
+                listaTareas.editarDescripcion(id, descripcion);
+                break;
+            case "fec":
+                String fechaStr = request.getParameter("fecNuev");
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+
+                try {
+                    fecha = sdf.parse(fechaStr);
+                } catch (ParseException e) {
+                    e.printStackTrace(); // Manejo de error en caso de que la fecha no sea válida
+                };
+                listaTareas.editarFecha(id, fecha);
+                break;
+        }
+                
+        Serializacion.escribirArchivo(listaTareas, context);   
+     String nombreI="a";
+        request.setAttribute("nombreI", nombreI);
+           // Redireccionar a la página de destino
+        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**

@@ -5,6 +5,7 @@
 package com.mundo.lista;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -163,8 +164,8 @@ public class Lista implements Serializable {
             tablaHTML.append("<td>").append(tarea.getFechaVencimiento()).append("</td>");
 
             // Botones
-            tablaHTML.append("<td><a href=\"#\" class=\"btn btn-outline-success\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
-            tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
+           tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\" data-bs-toggle=\"modal\" data-bs-target=\"#editar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
+           tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
 
             tablaHTML.append("</tr>");
             actual = actual.siguiente;
@@ -188,6 +189,51 @@ public class Lista implements Serializable {
         }
 
         return encontrado;
+    }
+    public void editarTitulo(int id, String titulo) {
+         Nodo actual = cabeza;
+        boolean encontrado = false;
+        while (actual != null && !encontrado) {
+
+            Tareas tarea = actual.tarea;
+            if (tarea.getId() == id) {
+                tarea.setTitulo(titulo);
+                encontrado = true;
+            }
+
+            actual = actual.siguiente;
+        }
+
+    }
+    public void editarDescripcion(int id, String descripcion) {
+         Nodo actual = cabeza;
+        boolean encontrado = false;
+        while (actual != null && !encontrado) {
+
+            Tareas tarea = actual.tarea;
+            if (tarea.getId() == id) {
+                tarea.setDescripcion(descripcion);
+                encontrado = true;
+            }
+
+            actual = actual.siguiente;
+        }
+
+    }
+    public void editarFecha(int id, Date fecha) {
+         Nodo actual = cabeza;
+        boolean encontrado = false;
+        while (actual != null && !encontrado) {
+
+            Tareas tarea = actual.tarea;
+            if (tarea.getId() == id) {
+                tarea.setFechaVencimiento(fecha);
+                encontrado = true;
+            }
+
+            actual = actual.siguiente;
+        }
+
     }
 
 }

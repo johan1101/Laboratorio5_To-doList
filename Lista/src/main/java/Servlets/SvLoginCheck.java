@@ -60,7 +60,10 @@ public class SvLoginCheck extends HttpServlet {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date fecha = null;
-
+        String ubicar=request.getParameter("opcion");
+        String idUbi=request.getParameter("idEd");
+        String idUbi2=request.getParameter("idEd2");
+        
         try {
             fecha = sdf.parse(fechaStr);
         } catch (ParseException e) {
@@ -71,13 +74,38 @@ public class SvLoginCheck extends HttpServlet {
         
         if(!listaTareas.existenId(id)){
             Tareas nuevaTarea = new Tareas(id, titulo, descripcion, fecha);
-
-            listaTareas.insertarPrincipio(nuevaTarea);
-
+            switch(ubicar){
+                case "prin":
+                    listaTareas.insertarPrincipio(nuevaTarea);
+                    an="si";
+                    break;
+                case "ant":
+                    if(idUbi != null){
+                       listaTareas.insertarAntesDe(Integer.parseInt(idUbi), nuevaTarea);
+                        an="si"; 
+                    } else{
+                        an="no";
+                    }
+                    break;
+                case "fin":
+                    listaTareas.insertarFinal(nuevaTarea);
+                    an="si";
+                    break;
+                case "desp":
+                    System.out.println("===============>"+idUbi);
+                    if(idUbi2 != null){
+                       listaTareas.insertarDespuesDe(Integer.parseInt(idUbi2), nuevaTarea);
+                        an="si"; 
+                    } else{
+                        an="no";
+                    }
+                    break;
+                    
+            }
             Serializacion.escribirArchivo(listaTareas, context);
             
             listaTareas.mostrarTareas();
-            an="si";
+            
         } else {
             an="no";
         }

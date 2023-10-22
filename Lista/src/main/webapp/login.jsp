@@ -13,7 +13,8 @@
 
 <%
     
-    String añadido=request.getParameter("add");   
+    String añadido=(String)request.getAttribute("add");   
+
     if (añadido != null && añadido.equals("no")) {
 %>
     <!--Llama metodo de JS para mostrar la modal de NO ingresado existosamente-->
@@ -23,7 +24,7 @@
             
         });
     </script>
-<%  
+<%  añadido="";
     }else if(añadido != null && añadido.equals("si")){
     %>
     <!--Llama metodo de JS para mostrar la modal de NO ingresado existosamente-->
@@ -32,7 +33,7 @@
             tareaSi();
         });
     </script>
-    <% 
+    <% añadido="";
 }
 request.removeAttribute("add");
 %>
@@ -60,7 +61,7 @@ request.removeAttribute("add");
     <div class="row">
         <div class="col-md-4">  <!-- clase division por 4 columnas -->
             <div class="card card-body">
-                <form class="row g-3 needs-validation" action="SvLoginCheck" method="GET" novalidate >
+                <form class="row g-3 needs-validation" action="SvAnadirBuscar" method="POST" novalidate >
                     <input type="hidden" name="usuarioI" value="<%=usuario%>">
                     <!-- ID -->
 
@@ -215,13 +216,18 @@ request.removeAttribute("add");
 <div class="modal fade" id="eliminar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <form action="SvEliminarEditar" method="GET">
             <div class="modal-body">
                 <h2>¿Estás seguro de que deseas eliminar esta tarea?</h2>
+                    <input type="text" name="usuarioI" class="form-control" value="<%=usuario%>" hidden>
+                    <input type="text" id="idDel"  class="form-control" name="idDel" hidden>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="margin-right: 10px;">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModalConfirm" onclick="eliminarTarea()">Eliminar</button>
+                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModalConfirm" >Eliminar</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

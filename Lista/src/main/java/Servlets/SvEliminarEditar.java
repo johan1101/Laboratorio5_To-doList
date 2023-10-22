@@ -53,7 +53,7 @@ public class SvEliminarEditar extends HttpServlet {
         }
 
         // Obtiene el nombre del perro a eliminar desde los parámetros de la solicitud
-        String idEliminar = request.getParameter("id");
+        String idEliminar = request.getParameter("idDel");
 
         System.out.println(idEliminar);
 
@@ -64,7 +64,7 @@ public class SvEliminarEditar extends HttpServlet {
         Serializacion.escribirArchivo(listaTareas, context);
 
             // Redireccionar a la página de destino
-            response.sendRedirect("login.jsp");
+        response.sendRedirect("login.jsp?usuarioI=" + request.getParameter("usuarioI"));
 
     }
 

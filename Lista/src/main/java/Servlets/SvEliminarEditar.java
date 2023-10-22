@@ -74,6 +74,7 @@ public class SvEliminarEditar extends HttpServlet {
         
        //Obtener el contexto del servlet
         ServletContext context = getServletContext();
+        String nombre = request.getParameter("usuarioI");
         
         try {
             listaTareas = Serializacion.leerTareas(context);
@@ -108,11 +109,9 @@ public class SvEliminarEditar extends HttpServlet {
         }
                 
         Serializacion.escribirArchivo(listaTareas, context);   
-     String nombreI="a";
-        request.setAttribute("nombreI", nombreI);
-           // Redireccionar a la página de destino
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-        dispatcher.forward(request, response);
+        
+        response.sendRedirect("login.jsp?usuarioI="+nombre);
+
     }
 
     /**

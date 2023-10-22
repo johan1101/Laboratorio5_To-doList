@@ -237,7 +237,8 @@ request.removeAttribute("add");
                         <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-signature"></i></span>
                         <input type="text" name="tituloNuev" class="form-control" required>
                         <input type="text" name="edit" value="tit" hidden>
-                        <input type="text" name="idEd" class="form-control" hidden required>
+                        <input type="text" name="idEd" class="form-control" hidden >
+                        <input type="text" name="usuarioI" class="form-control" value="<%=usuario%>" hidden>
                     </div>
                     
                 </div>
@@ -265,6 +266,7 @@ request.removeAttribute("add");
                         <textarea class="form-control" name="desNuev" id="validationTextarea" placeholder="Ingrese la decripcion" required></textarea>
                         <input type="text" name="edit" value="des" hidden>
                         <input type="text" name="idEd" class="form-control" hidden>
+                        <input type="text" name="usuarioI" class="form-control" value="<%=usuario%>" hidden>
                     </div>
                     
                 </div>
@@ -288,10 +290,11 @@ request.removeAttribute("add");
                 <div class="modal-body">
                     <form action="SvEliminarEditar" method="POST" class="d-flex">
                     <div class="input-group">
-                        <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-signature"></i></span>
+                        
                         <input type="date" class="form-control"  name="fecNuev" id="validationCustom05" required>
                         <input type="text" name="edit" value="fec" hidden>
-                        <input type="text" name="idEd" class="form-control" >
+                        <input type="text" name="idEd" class="form-control" hidden>
+                        <input type="text" name="usuarioI" class="form-control" value="<%=usuario%>" hidden>
                     </div>
                     
                 </div>

@@ -1,4 +1,4 @@
-<%@page import="com.mundo.lista.Lista"%>
+        <%@page import="com.mundo.lista.Lista"%>
 <%@page import="com.mundo.lista.Serializacion"%>
 <%@page import="com.mundo.lista.Tareas"%>
 
@@ -60,7 +60,7 @@ request.removeAttribute("add");
     <div class="row">
         <div class="col-md-4">  <!-- clase division por 4 columnas -->
             <div class="card card-body">
-                <form class="row g-3 needs-validation" action="SvLoginCheck" method="GET" novalidate >
+                <form class="row g-3 needs-validation" action="SvAnadirBuscar" method="GET" novalidate >
                     <input type="hidden" name="usuarioI" value="<%=usuario%>">
                     <!-- ID -->
 
@@ -257,7 +257,7 @@ request.removeAttribute("add");
                     <h5 class="modal-title">Editar titulo  <span id="idEditar" hidden></span></h5>
             </div>
 
-                <div class="modal-body">
+                <div class="modal-body">    
                     <form action="SvEliminarEditar" method="POST" class="d-flex">
                     <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-signature"></i></span>

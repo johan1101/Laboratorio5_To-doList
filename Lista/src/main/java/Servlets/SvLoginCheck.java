@@ -39,7 +39,81 @@ public class SvLoginCheck extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String nombre = request.getParameter("usuarioI");
+        
+        //Obtener el contexto del servlet
+        ServletContext context = getServletContext();
+        try {
+            listaTareas = Serializacion.leerTareas(context);
+            if(listaTareas == null){
+                listaTareas = new Lista();
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SvLoginCheck.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+        // Recibir los parámetros del formulario
+        int id = Integer.parseInt(request.getParameter("id"));
+        String titulo = request.getParameter("titulo");
+        String descripcion = request.getParameter("descripcion");
+        String fechaStr = request.getParameter("fecha");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha = null;
+        String ubicar=request.getParameter("opcion");
+        String idUbi=request.getParameter("idEd");
+        String idUbi2=request.getParameter("idEd2");
+        
+        try {
+            fecha = sdf.parse(fechaStr);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Manejo de error en caso de que la fecha no sea válida
+        };
+        
+        String an="";
+        
+        if(!listaTareas.existenId(id)){
+            Tareas nuevaTarea = new Tareas(id, titulo, descripcion, fecha);
+            switch(ubicar){
+                case "prin":
+                    listaTareas.insertarPrincipio(nuevaTarea);
+                    an="si";
+                    break;
+                case "ant":
+                    if(idUbi != null){
+                       listaTareas.insertarAntesDe(Integer.parseInt(idUbi), nuevaTarea);
+                        an="si"; 
+                    } else{
+                        an="no";
+                    }
+                    break;
+                case "fin":
+                    listaTareas.insertarFinal(nuevaTarea);
+                    an="si";
+                    break;
+                case "desp":
+                    System.out.println("===============>"+idUbi);
+                    if(idUbi2 != null){
+                       listaTareas.insertarDespuesDe(Integer.parseInt(idUbi2), nuevaTarea);
+                        an="si"; 
+                    } else{
+                        an="no";
+                    }
+                    break;
+                    
+            }
+            Serializacion.escribirArchivo(listaTareas, context);
+            
+            listaTareas.mostrarTareas();
+            
+        } else {
+            an="no";
+        }
+
+
+        // Redireccionar a la página de destino internamente en el servidor
+            // Redireccionar a la página de destino
+        response.sendRedirect("login.jsp?usuarioI="+nombre+"&add="+an);
     }
 
     /**

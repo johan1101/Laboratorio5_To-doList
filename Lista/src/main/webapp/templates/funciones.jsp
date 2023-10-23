@@ -42,7 +42,7 @@
     };
     
     // Mostrar una notificación Toastr de error
-    toastr.error('No se ha añadido exitosamente, intenta de nuevo!', 'No se ha podido guardar');
+    toastr.error('Ya existe una tarea con este id, intenta con otro!', 'No se ha podido registrar');
     }
     // Función de flecha que se ejecuta inmediatamente.
     (() => {
@@ -72,52 +72,47 @@
      * Se dispara cuando se muestra el modal.
      */
     $('#eliminar').on('show.bs.modal', function (event) {
-    // Obtiene el botón que desencadenó el evento de mostrar el modal
-    var button = $(event.relatedTarget);
+        // Obtiene el botón que desencadenó el evento de mostrar el modal
+        var button = $(event.relatedTarget);
 
-    // Obtiene el id de la tarea desde el atributo 'data-nombre' del botón
-    var idTarea = button.data('nombre');
+        // Obtiene el id de la tarea desde el atributo 'data-nombre' del botón
+        var idTarea = button.data('nombre');
 
-    // Establece el ID de la tarea en el campo de entrada
-    $('#idDel').val(idTarea);
+        // Obtiene el modal actual
+        var modal = $(this);
+        
+        var titNuev =
 
-    // Obtiene el modal actual
-    var modal = $(this);
+        // Almacena el nombre de la tarea en la variable global 'id'
+        id = idTarea;
 
-    // Almacena el nombre de la tarea en la variable global 'id'
-    id = idTarea;
-});
-
-    
-    function eliminarTarea() {
-    // Obtiene el id de la tarea desde una variable previamente definida (id)
-    var idTarea = id;
-
-    // Realiza una solicitud AJAX al servlet 'SvEliminarEditar' para eliminar la tarea
-    $.ajax({
-        url: 'SvEliminarEditar?id=' + idTarea, // URL del servlet sin 'add' parámetro
-        method: 'GET', // Método HTTP utilizado para la solicitud (GET en este caso)
-        success: function (data) {
-            // En caso de éxito en la solicitud:
-
-            // Cierra el modal de eliminación
-            $('#eliminar').modal('hide');
-
-            // Recarga la página actual para reflejar los cambios
-            location.reload();
-
-            // Mostrar el Toastr solo después de una eliminación exitosa
-            toastr.success('La tarea ha sido eliminada exitosamente!', 'Eliminada');
-        },
-        error: function () {
-            // En caso de error en la solicitud:
-
-            // Registra un mensaje de error en la consola (para fines de depuración)
-            console.log('Error al eliminar la tarea.');
-        }
     });
-}
+    
+     function eliminarTarea() {
+        // Obtiene el id de la tarea desde una variable previamente definida (id)
+        var idTarea = id;
 
+        // Realiza una solicitud AJAX al servlet 'SvEliminarEditar' para eliminar la tarea
+        $.ajax({
+            url: 'SvEliminarEditar?id=' + idTarea, // URL del servlet con el parámetro 'id' para la eliminación
+            method: 'GET', // Método HTTP utilizado para la solicitud (GET en este caso)
+            success: function (data) {
+                // En caso de éxito en la solicitud:
+
+                // Cierra el modal de eliminación
+                $('#eliminar').modal('hide');
+
+                // Recarga la página actual para reflejar los cambios
+                location.reload();
+            },
+            error: function () {
+                // En caso de error en la solicitud:
+
+                // Registra un mensaje de error en la consola (para fines de depuración)
+                console.log('Error al eliminar el perro.');
+            }
+        });
+    }
 
     $('#editar').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
@@ -196,5 +191,4 @@ $('#edFec').on('show.bs.modal', function (event) {
         // Muestra el botón final para enviar
         finalSubmitBtn.style.display = "block";
     });
-
 </script>

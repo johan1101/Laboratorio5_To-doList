@@ -19,6 +19,7 @@
     ServletContext context = getServletContext();
     String id=request.getParameter("search");
     listaTareas = Serializacion.leerTareas(context);
+    boolean verificar=listaTareas.verificar();
                            
     if (listaTareas == null) {
         listaTareas = new Lista();
@@ -154,7 +155,21 @@ request.removeAttribute("add");
                             </div> 
                         </div>
                     </div>
+                    <%
+                    if(verificar){
+                    %> 
                     <button type="button" class="btn btn-outline-primary" id="showOptionsBtn">Agregar Tarea</button>
+                    <%
+                    } else if(!verificar){ 
+                    %>
+                    <center>
+                        <button type="submit" class="btn btn-outline-primary" id="finalSubmitBtn">Agregar Tarea</button>
+                    </center>
+                    <%
+                        
+                    }
+                    
+                    %>
                     <div id="opcionesAdicionales" class="alert alert-light" style="display: none;">
                         <center><h5>¿Donde agregar?</h5></center>
                         <div class="row g-2">

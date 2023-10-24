@@ -287,6 +287,12 @@ public class Lista implements Serializable {
 
         return tablaHTML.toString();
     }
-
+    public boolean verificar() {
+        Nodo actual = cabeza;
+            if (actual!=null) {
+                return true;
+            }
+        return false;
+    }
 
 }

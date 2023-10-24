@@ -8,5 +8,6 @@ com\mundo\lista\Metodos.class
 Servlets\SvLoginCheck.class
 com\mundo\lista\Lista$Nodo.class
 com\mundo\lista\resources\JavaEE8Resource.class
+Servlets\SvAnadirBuscar.class
 com\mundo\lista\JAXRSConfiguration.class
 com\mundo\lista\Tareas.class

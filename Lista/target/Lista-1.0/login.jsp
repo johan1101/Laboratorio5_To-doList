@@ -1,4 +1,4 @@
-        <%@page import="com.mundo.lista.Lista"%>
+<%@page import="com.mundo.lista.Lista"%>
 <%@page import="com.mundo.lista.Serializacion"%>
 <%@page import="com.mundo.lista.Tareas"%>
 
@@ -60,7 +60,7 @@ request.removeAttribute("add");
     <div class="row">
         <div class="col-md-4">  <!-- clase division por 4 columnas -->
             <div class="card card-body">
-                <form class="row g-3 needs-validation" action="SvAnadirBuscar" method="GET" novalidate >
+                <form class="row g-3 needs-validation" action="SvAnadirBuscar" method="POST" novalidate >
                     <input type="hidden" name="usuarioI" value="<%=usuario%>">
                     <!-- ID -->
 
@@ -138,7 +138,7 @@ request.removeAttribute("add");
                         <div class="row g-2">
                             <div class="col-md-6">
                                 <input type="radio" name="opcion" id="opcion1" value="prin" checked>
-                                <label for="opcion1">Agregar al principio.</label>
+                                <label for="opcion1">Agregar al inicio.</label>
                             </div>
                             <div class="col-md-6">   
                                 <input type="radio" name="opcion" id="opcion1" value="ant">
@@ -198,7 +198,7 @@ request.removeAttribute("add");
                             if (listaTareas == null) {
                                 listaTareas = new Lista();
                             }
-
+                           
                             String tablaHTML = listaTareas.generarTabla();
                         %>
                     <div>
@@ -217,10 +217,16 @@ request.removeAttribute("add");
         <div class="modal-content">
             <div class="modal-body">
                 <h2>¿Estás seguro de que deseas eliminar esta tarea?</h2>
+                <form action="SvEliminarEditar" method="GET">
+                    <!-- Agregar un campo de entrada para mostrar el ID de la tarea -->
+                    <input type="text" id="idDel" name="idDel" hidden>
+                    <input type="text" name="usuarioI" class="form-control" value="<%=usuario%>" hidden>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="margin-right: 10px;">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModalConfirm" onclick="eliminarTarea()">Eliminar</button>
+                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModalConfirm">Eliminar</button>
+                </form>
             </div>
         </div>
     </div>
@@ -257,7 +263,7 @@ request.removeAttribute("add");
                     <h5 class="modal-title">Editar titulo  <span id="idEditar" hidden></span></h5>
             </div>
 
-                <div class="modal-body">    
+                <div class="modal-body">
                     <form action="SvEliminarEditar" method="POST" class="d-flex">
                     <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-signature"></i></span>

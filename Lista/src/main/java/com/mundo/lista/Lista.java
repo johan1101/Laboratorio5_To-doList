@@ -154,7 +154,7 @@ public class Lista implements Serializable {
     public String generarTabla() {
         StringBuilder tablaHTML = new StringBuilder();
         Nodo actual = cabeza;
-
+        if(actual!= null){
         while (actual != null) {
             Tareas tarea = actual.tarea;
             tablaHTML.append("<tr>");
@@ -169,6 +169,15 @@ public class Lista implements Serializable {
 
             tablaHTML.append("</tr>");
             actual = actual.siguiente;
+        }} else if(actual==null){
+            tablaHTML.append("<tr>");
+            tablaHTML.append("<td>No hay tareas registradas</td>");       
+            tablaHTML.append("<td></td>");  
+            tablaHTML.append("<td></td>");  
+            tablaHTML.append("<td></td>");  
+            tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
+           tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></a></td>");
+            tablaHTML.append("</tr>");
         }
         tablaHTML.append("</table>");  // Cierra la tabla
 

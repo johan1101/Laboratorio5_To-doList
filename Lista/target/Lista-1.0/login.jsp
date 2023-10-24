@@ -33,6 +33,15 @@
         });
     </script>
     <% 
+} else if(añadido != null && añadido.equals("errorid")){
+    %>
+    <!--Llama metodo de JS para mostrar la modal de NO ingresado existosamente-->
+    <script>
+          $(document).ready(function () {
+            errorId();
+        });
+    </script>
+    <% 
 }
 request.removeAttribute("add");
 %>

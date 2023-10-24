@@ -86,11 +86,12 @@ public class SvAnadirBuscar extends HttpServlet {
                     an="si";
                     break;
                 case "ant":
-                    if(idUbi != null){
-                       listaTareas.insertarAntesDe(Integer.parseInt(idUbi), nuevaTarea);
+                    if(idUbi2 != null  && !idUbi.equals("") && listaTareas.existenId(Integer.parseInt(idUbi))){
+                        listaTareas.insertarAntesDe(Integer.parseInt(idUbi), nuevaTarea);
                         an="si"; 
+                         
                     } else{
-                        an="no";
+                        an="errorid";
                     }
                     break;
                 case "fin":
@@ -98,12 +99,11 @@ public class SvAnadirBuscar extends HttpServlet {
                     an="si";
                     break;
                 case "desp":
-                    System.out.println("===============>"+idUbi);
-                    if(idUbi2 != null){
-                       listaTareas.insertarDespuesDe(Integer.parseInt(idUbi2), nuevaTarea);
+                    if(idUbi2 != null  && !idUbi.equals("") && listaTareas.existenId(Integer.parseInt(idUbi))){
+                        listaTareas.insertarDespuesDe(Integer.parseInt(idUbi2), nuevaTarea);
                         an="si"; 
                     } else{
-                        an="no";
+                        an="errorid";
                     }
                     break;
                     
@@ -116,16 +116,8 @@ public class SvAnadirBuscar extends HttpServlet {
             an="no";
         }
 
-
-        // Redireccionar a la página de destino internamente en el servidor
-            // Redireccionar a la página de destino
-       // response.sendRedirect("login.jsp?usuarioI="+nombre+"&add="+an);
-         request.setAttribute("add", an);
+        response.sendRedirect("login.jsp?usuarioI="+nombre+"&add="+an);
         
-
-        // Redireccionar a la página de destino internamente en el servidor
-        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-        dispatcher.forward(request, response);
     }
 
 

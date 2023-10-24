@@ -44,6 +44,30 @@
     // Mostrar una notificación Toastr de error
     toastr.error('Ya existe una tarea con este id, intenta con otro!', 'No se ha podido registrar');
     }
+    
+    function errorId() {
+        toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+    // Mostrar una notificación Toastr de error
+    toastr.error('Hubo un error con el id, no existe o no lo digitaste. Intenta de nuevo!', 'No se ha podido registrar');
+    }
+    
+    
     // Función de flecha que se ejecuta inmediatamente.
     (() => {
         'use strict'; // Modo estricto para un código más seguro y eficiente.

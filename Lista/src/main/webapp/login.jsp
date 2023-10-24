@@ -1,3 +1,4 @@
+<%@page import="com.mundo.lista.Metodos"%>
 <%@page import="com.mundo.lista.Lista"%>
 <%@page import="com.mundo.lista.Serializacion"%>
 <%@page import="com.mundo.lista.Tareas"%>
@@ -12,7 +13,18 @@
 <%@include file= "templates/navbar.jsp" %>
 
 <%
-    
+   
+    Lista listaTareas = new Lista();
+    // Obtener el contexto del servlet
+    ServletContext context = getServletContext();
+    String id=request.getParameter("search");
+    listaTareas = Serializacion.leerTareas(context);
+                           
+    if (listaTareas == null) {
+        listaTareas = new Lista();
+    }            
+    String tablaHTML = Metodos.listarTareas(id, context);
+                    
     String añadido=request.getParameter("add");   
     if (añadido != null && añadido.equals("no")) {
 %>
@@ -77,7 +89,7 @@ request.removeAttribute("add");
                         <label for="validationCustomUsername" class="form-label">Id</label>
                         <div class="input-group">
                             <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-id-card"></i></span>
-                            <input type="number" name="id" class="form-control" min="0" step="1"id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                            <input type="number" name="id" class="form-control" min="0" step="1" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
                            
                             <!-- Verificacion -->
                             <div class="valid-feedback">
@@ -198,23 +210,11 @@ request.removeAttribute("add");
 
                     <!-- Contenido tabla -->
                     <tbody>
-                        <%
-                            Lista listaTareas = new Lista();
-                            // Obtener el contexto del servlet
-                            ServletContext context = getServletContext();
-
-                            listaTareas = Serializacion.leerTareas(context);
-                            if (listaTareas == null) {
-                                listaTareas = new Lista();
-                            }
-                           
-                            String tablaHTML = listaTareas.generarTabla();
-                        %>
                     <div>
-                        <%= tablaHTML%>
+                      <% String tablaHTML2 = (String) request.getAttribute("tablaHTML2"); %>
+                      <%= tablaHTML != null ? tablaHTML : tablaHTML %>
                     </div>
-
-                    </tbody>
+                  </tbody>
                 </table>
             </div>
         </div>

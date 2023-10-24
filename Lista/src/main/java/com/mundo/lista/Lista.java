@@ -136,7 +136,7 @@ public class Lista implements Serializable {
             }
         }
     }
-
+    
     public void mostrarTareas() {
         Nodo actual = cabeza;
 
@@ -230,7 +230,7 @@ public class Lista implements Serializable {
 
     }
     public void editarFecha(int id, Date fecha) {
-         Nodo actual = cabeza;
+        Nodo actual = cabeza;
         boolean encontrado = false;
         while (actual != null && !encontrado) {
 
@@ -244,5 +244,49 @@ public class Lista implements Serializable {
         }
 
     }
+    
+    public String generarTablaBusqueda(String terminoBusqueda) {
+        StringBuilder tablaHTML = new StringBuilder();
+        Nodo actual = cabeza;
+        boolean encontrado=false;
+        if (actual != null && terminoBusqueda != null && !terminoBusqueda.isEmpty()) {
+            while (actual != null) {
+                Tareas tarea = actual.tarea;
+
+                // Comprueba si la tarea coincide con el término de búsqueda
+                if (tarea.getId()==Integer.parseInt(terminoBusqueda)) {  
+                    tablaHTML.append("<tr>");
+                    tablaHTML.append("<td>").append(tarea.getId()).append("</td>");
+                    tablaHTML.append("<td>").append(tarea.getTitulo()).append("</td>");
+                    tablaHTML.append("<td>").append(tarea.getDescripcion()).append("</td>");
+                    tablaHTML.append("<td>").append(tarea.getFechaVencimiento()).append("</td>");
+
+                    // Botones
+                   tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\" data-bs-toggle=\"modal\" data-bs-target=\"#editar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
+                   tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
+
+                    tablaHTML.append("</tr>");
+                    encontrado=true;
+                }
+
+                actual = actual.siguiente;
+            }
+        } 
+        if(!encontrado) {
+                    tablaHTML.append("<tr>");
+                    tablaHTML.append("<td>Tarea no encontrada</td>");
+                    tablaHTML.append("<td></td>");
+                    tablaHTML.append("<td></td>");
+                    tablaHTML.append("<td></td>");
+                    tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
+                    tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></a></td>");
+                    tablaHTML.append("</tr>");
+                }
+
+        tablaHTML.append("</table>");  // Cierra la tabla
+
+        return tablaHTML.toString();
+    }
+
 
 }

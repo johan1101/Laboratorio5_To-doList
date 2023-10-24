@@ -5,6 +5,7 @@
 package Servlets;
 
 import com.mundo.lista.Lista;
+import com.mundo.lista.Metodos;
 import com.mundo.lista.Serializacion;
 import com.mundo.lista.Tareas;
 import java.io.IOException;
@@ -38,9 +39,15 @@ public class SvAnadirBuscar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        
+        String terminoBusqueda = request.getParameter("buscar");
+        String usuario = request.getParameter("usuarioI");
+        ServletContext context = getServletContext();
+        
+        response.sendRedirect("login.jsp?search="+terminoBusqueda+"&usuarioI="+usuario);
 
+        }
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -110,7 +117,7 @@ public class SvAnadirBuscar extends HttpServlet {
             }
             Serializacion.escribirArchivo(listaTareas, context);
             
-            listaTareas.mostrarTareas();
+            //listaTareas.mostrarTareas();
             
         } else {
             an="no";

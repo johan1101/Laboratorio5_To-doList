@@ -58,13 +58,14 @@ public class Metodos {
         return true; //Si no se encontró coincidencias se envia true.
     }
    public static String listarTareas (String id, ServletContext context) throws IOException, ClassNotFoundException{
-       Lista listaTareas = new Lista();
+       Lista listaTareas = listaTareas = Serializacion.leerTareas(context);
+        if (listaTareas == null) {
+             listaTareas = new Lista();
+        }
        String tabla="";
        if (id == null){
-           listaTareas = Serializacion.leerTareas(context);
            tabla=listaTareas.generarTabla();
        } else if(id != null){
-           listaTareas = Serializacion.leerTareas(context);
            tabla=listaTareas.generarTablaBusqueda(id);
     }
        

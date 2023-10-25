@@ -1,8 +1,9 @@
+<!-- Pagina principal- LOGIN -->
 
 <!-- Inclución de la plantilla de header -->
 <%@include file= "templates/header.jsp" %>
 
-<!-- Inclución deL STYLE -->
+<!-- Inclución del STYLE -->
 <%@include file= "style/style.jsp" %>
 
 
@@ -18,7 +19,8 @@
             <button type="submit" class="btn btn-primary">Registrar Usuario</button>
         </form>
     </div>
-        <!-- Contenedor adicional para los toastr -->
+    
+    <!-- Contenedor adicional para los toastr -->
     <div class="posicion"></div>
     <div class="form-container sign-in">
         <form action="SvLoginCheck" method="POST">
@@ -29,6 +31,8 @@
             <button type="submit" class="btn">Ingresar</button>
         </form>
     </div>
+    <!-- Contenedor derecho -->
+    
     <div class="toggle-container">
         <div class="toggle">
             <div class="toggle-panel toggle-left">
@@ -36,9 +40,10 @@
                 <button class="hidden" id="login">Regresar</button>
             </div>
             <div class="toggle-panel toggle-right">
-                <h1 id="nalmi">Nalmi</h1>
-                <img id="im" src="img/vector2.png" width="80%">
+                <h1>Nalmi</h1>
+                <p id="mensaje">Gestiona tus tareas de manera eficiente con nuestro sistema</p>
                 <p id="cuenta">No tiene una cuenta?</p>
+                <!-- Boton que muestra opcion registrar -->
                 <button class="hidden" id="register">Regístrese aqui</button>
             </div>
         </div>
@@ -69,8 +74,7 @@ else if (registrado != null && registrado.equals("no")) {
         usuarioNoR();
     });
 </script>
-<%
-    }
+<%  }
     //Llamamos variable para saber si los datos de ingreso son validos
     String valido = request.getParameter("valido");
     //En caso de no ser validos
@@ -103,16 +107,16 @@ else if (registrado != null && registrado.equals("no")) {
     </div>
 </div>
 
-
-
+<!-- Librerias -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 <!-- Script para llamar los toastr. BASADO: https://codeseven.github.io/toastr/demo.html
     BASADO: https://getbootstrap.com/docs/5.3/components/toasts/-->
-<script>
 
+<script>
+    // Manejo boton REGISTRAR y REGRESAR 
     const container = document.getElementById('container');
     const registerBtn = document.getElementById('register');
     const loginBtn = document.getElementById('login');
@@ -123,7 +127,10 @@ else if (registrado != null && registrado.equals("no")) {
 
     loginBtn.addEventListener('click', () => {
         container.classList.remove("active");
-    });    function usuarioR() {
+    }); 
+    
+    //TOASTR registro exitoso
+    function usuarioR() {
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -142,13 +149,11 @@ else if (registrado != null && registrado.equals("no")) {
             "hideMethod": "fadeOut"
         };
 
-
-
-
-        // Mostrar una notificación Toastr de error
+        // Mostrar una notificación Toastr 
         toastr.success('Se ha registrado exitosamente!', 'Registrado');
     }
-
+    
+    //TOASTR login NO exitoso
     function usuarioNoI() {
         toastr.options = {
             "closeButton": false,
@@ -169,10 +174,10 @@ else if (registrado != null && registrado.equals("no")) {
         };
 
         // Mostrar una notificación Toastr de error
-        toastr.warning('La cedula o contraseña no son correctas', 'No ha podido ingresar');
+        toastr.error('La cedula o contraseña no son correctas', 'No ha podido ingresar');
     }
 
-
+    //TOASTR registro NO exitoso
     function usuarioNoR() {
         // Configurar opciones Toastr
         toastr.options = {

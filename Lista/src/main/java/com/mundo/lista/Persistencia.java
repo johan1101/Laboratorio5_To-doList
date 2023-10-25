@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import javax.servlet.ServletContext;
 
 /**
- *
+ * Clase para manejar la persistencia en los USUARIOS
  * @author Johan Ordoñez - Maria Casanova - Cristhian Padilla
  */
 public class Persistencia {

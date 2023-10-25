@@ -57,20 +57,28 @@ public class Metodos {
         }
         return true; //Si no se encontró coincidencias se envia true.
     }
+    /**
+     * Metodo para listar tareas
+     * @param id
+     * @param context
+     */
    public static String listarTareas (String id, ServletContext context) throws IOException, ClassNotFoundException{
+       //Llenamos la lista con la informacion del archivo
        Lista listaTareas = listaTareas = Serializacion.leerTareas(context);
+       //En caso de estar vacia se crea una
         if (listaTareas == null) {
              listaTareas = new Lista();
         }
-       String tabla="";
-       if (id == null){
+       String tabla="";//Variable que contiene la tabla
+       
+       if (id == null){//Cuando no se debe buscar nada
            tabla=listaTareas.generarTabla();
-       } else if(id != null){
+       }
+       else if(id != null){//En caso de buscar
            tabla=listaTareas.generarTablaBusqueda(id);
     }
-       
-       
-       return tabla;
+
+       return tabla;//Se devuelve la tabla
    }
     
 }

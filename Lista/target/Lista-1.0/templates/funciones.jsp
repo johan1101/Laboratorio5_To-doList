@@ -1,4 +1,6 @@
 <script>
+    
+  //TOASTR tareas añadidas exitosamente
   function tareaSi() {
         toastr.options = {
         "closeButton": true,
@@ -21,7 +23,7 @@
     // Mostrar una notificación Toastr de error
     toastr.success('Se ha añadido exitosamente!', 'Registrado');
     }
-    
+    //TOASTR tareas NO añadidas exitosamente
     function tareaNo(){
          toastr.options = {
         "closeButton": true,
@@ -45,6 +47,7 @@
     toastr.error('Ya existe una tarea con este id, intenta con otro!', 'No se ha podido registrar');
     }
     
+    //TOASTR error con el ID
     function errorId() {
         toastr.options = {
         "closeButton": true,
@@ -89,7 +92,7 @@
         });
     })();
     
-       var id = "";
+       var id = ""; //Variable id para eliminar.
 
     /**
      * Esta función se encarga de mostrar el modal de confirmación antes de eliminar una tarea.
@@ -189,4 +192,5 @@ $('#edFec').on('show.bs.modal', function (event) {
         // Muestra el botón final para enviar
         finalSubmitBtn.style.display = "block";
     });
+    
 </script>

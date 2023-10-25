@@ -6,14 +6,7 @@ package Servlets;
 
 import com.mundo.lista.Lista;
 import com.mundo.lista.Metodos;
-import com.mundo.lista.Serializacion;
-import com.mundo.lista.Tareas;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,18 +20,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SvLoginCheck", urlPatterns = {"/SvLoginCheck"})
 public class SvLoginCheck extends HttpServlet {
-
+    
+    Lista listaTareas = new Lista(); //Se crea una lista nueva  
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     }
-
-    Lista listaTareas = new Lista();
-
+    /**
+     * Metodo GET no usado
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
       
     }
 
@@ -77,6 +70,5 @@ public class SvLoginCheck extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

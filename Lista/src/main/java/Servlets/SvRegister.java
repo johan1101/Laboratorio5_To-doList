@@ -23,7 +23,9 @@ public class SvRegister extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-
+    /**
+     * Metodo GET no usado
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {    

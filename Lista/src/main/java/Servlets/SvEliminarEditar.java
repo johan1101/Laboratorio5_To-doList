@@ -22,30 +22,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Johan Ordoñez
+ * Servlet eliminar y editar
+ * @author Johan Ordoñez - Maria Casanova - Cristhian Padilla
  */
 @WebServlet(name = "SvEliminarEditar", urlPatterns = {"/SvEliminarEditar"})
 public class SvEliminarEditar extends HttpServlet {
-
+    
+    Lista listaTareas = new Lista();//Se crea una lista
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
     }
-
-    Lista listaTareas = new Lista();
-
+    /**
+     * Metodo GET para eliminar 
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
 
         //Obtener el contexto del servlet
         ServletContext context = getServletContext();
-
-        System.out.println("Corriendo metodo de eliminar");
         
+        //Se llena con el archivo
         try {
             listaTareas = Serializacion.leerTareas(context);
         } catch (ClassNotFoundException ex) {
@@ -56,16 +55,15 @@ public class SvEliminarEditar extends HttpServlet {
         String idEliminar = request.getParameter("idDel");
         String usuarioI = request.getParameter("usuarioI");
         
-
-        System.out.println(idEliminar);
-
+        //Se castea
         int eliminar = Integer.parseInt(idEliminar);
 
-        listaTareas.eliminarTarea(eliminar);
-
+        listaTareas.eliminarTarea(eliminar);//Eliminamos la tarea
+        
+        //Actualizamos el archivo
         Serializacion.escribirArchivo(listaTareas, context);
 
-            // Redireccionar a la página de destino
+        // Redireccionar a la página de destino
         response.sendRedirect("login.jsp?usuarioI="+usuarioI);
 
     }
@@ -76,25 +74,31 @@ public class SvEliminarEditar extends HttpServlet {
         
        //Obtener el contexto del servlet
         ServletContext context = getServletContext();
-        String nombre = request.getParameter("usuarioI");
+        String nombre = request.getParameter("usuarioI");//Se obtiene nombre del usuario
         
+        //Se llena la lista con el archivo
         try {
             listaTareas = Serializacion.leerTareas(context);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SvEliminarEditar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String edit = request.getParameter("edit");
-        int id=Integer.parseInt( request.getParameter("idEd"));
+         // Obtiene el nombre del perro a eliminar desde los parámetros de la solicitud
+        String edit = request.getParameter("edit");//Que hay que editar
+        int id=Integer.parseInt( request.getParameter("idEd"));//Id tarea a editar
         
+        //Se analiza que se debe editar
         switch(edit){
+            //Titulo
             case"tit":
                 String titulo = request.getParameter("tituloNuev"); 
                 listaTareas.editarTitulo(id,titulo);              
                 break;
+            //Descripcion
             case "des":
                 String descripcion = request.getParameter("desNuev"); 
                 listaTareas.editarDescripcion(id, descripcion);
                 break;
+            //Fecha
             case "fec":
                 String fechaStr = request.getParameter("fecNuev");
 
@@ -109,21 +113,18 @@ public class SvEliminarEditar extends HttpServlet {
                 listaTareas.editarFecha(id, fecha);
                 break;
         }
-                
-        Serializacion.escribirArchivo(listaTareas, context);   
+        //Serializamos con la informacion nueva        
+        Serializacion.escribirArchivo(listaTareas, context);  
         
+        //Redirigimos con el usuario
         response.sendRedirect("login.jsp?usuarioI="+nombre);
 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

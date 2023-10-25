@@ -15,8 +15,8 @@ import java.io.ObjectOutputStream;
 import javax.servlet.ServletContext;
 
 /**
- *
- * @author Johan Ordoñez
+ * Clase para manejar la serializacion en las tareas
+ * @author Johan Ordoñez - Maria Casanova - Cristhian Padilla
  */
 public class Serializacion {
 

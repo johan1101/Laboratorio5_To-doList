@@ -105,7 +105,7 @@
 
                 <div class="card-body">
                     <h5>Bienvenid@, <%=usuario%></h5>
-                    <a href="index.jsp" type="button" class="btn " style="background-color: #8461BB; color: #ffffff;">Cerrar sesión</a>
+                    <a href="index.jsp" type="button" class="btn " style="background-color: #512da8; color: #ffffff;">Cerrar sesión</a>
 
                 </div>
 
@@ -193,7 +193,7 @@
                             <%
                                 if (verificar) {
                             %>
-                            <button type="button" class="btn " id="showOptionsBtn" style="background-color: #8461BB; color: #ffffff;" >Agregar Tarea</button>
+                            <button type="button" class="btn " id="showOptionsBtn" style="background-color: #512da8; color: #ffffff;" >Agregar Tarea</button>
                             <%
                             } else if (!verificar) {
                             %>

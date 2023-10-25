@@ -36,8 +36,8 @@
                 <button class="hidden" id="login">Regresar</button>
             </div>
             <div class="toggle-panel toggle-right">
-                <h1>Nalmi</h1>
-                <p id="mensaje">Gestiona tus tareas de manera eficiente con nuestro sistema</p>
+                <h1 id="nalmi">Nalmi</h1>
+                <img id="im" src="img/vector2.png" width="80%">
                 <p id="cuenta">No tiene una cuenta?</p>
                 <button class="hidden" id="register">Regístrese aqui</button>
             </div>

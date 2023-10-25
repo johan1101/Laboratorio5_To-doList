@@ -128,21 +128,22 @@
 
 // JavaScript para modal1
 $('#editar').on('show.bs.modal', function (event) {
-    // Al hacer clic en el botón, pasa la variable tareaId a modal2
+    // Al hacer clic en el botón, pasa la variable tareaId a moda
     $('#btnPasarVariable').click(function () {
         $('#edTit').data('tareaId', tareaId);
-        $('#edTit').modal('show'); // Muestra modal2
+        $('#edTit').modal('show'); // Muestra modaL
     });
     $('#btnPasarVariable1').click(function () {
         $('#edDes').data('tareaId', tareaId);
-        $('#edDes').modal('show'); // Muestra modal2
+        $('#edDes').modal('show'); // Muestra modaL
     });
     $('#btnPasarVariable2').click(function () {
         $('#edFec').data('tareaId', tareaId);
-        $('#edFec').modal('show'); // Muestra modal2
+        $('#edFec').modal('show'); // Muestra modaL
     });
 });
-// JavaScript para modal2
+ 
+// JavaScript para modal 2
 $('#edTit').on('show.bs.modal', function (event) {
     // Obtiene la variable pasada desde modal1 y la muestra en modal2
     var tareaId = $('#edTit').data('tareaId');

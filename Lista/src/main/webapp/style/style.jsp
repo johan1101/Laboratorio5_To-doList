@@ -205,14 +205,25 @@
         transform: translateX(0);
         transition: all 0.6s ease-in-out;
     }
+    
+            .toggle-panel #nalmi{
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+    
+      .toggle-panel #cuenta{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    
+   
+    .toggle-panel #im{
+        margin-bottom: 20px;
+    }
 
     .toggle-panel #mensaje{
         margin-top: 10px;
         margin-bottom: 50px;
-    }
-
-    .toggle-panel #cuenta{
-        margin-bottom: 10px;
     }
 
     .toggle-left{

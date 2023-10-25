@@ -105,7 +105,7 @@ public class SvAnadirBuscar extends HttpServlet {
                 //Antes de
                 case "ant":
                     //Se analiza si es nulo o vacio el id
-                    if(idUbi2 != null  && !idUbi.equals("") && listaTareas.existenId(Integer.parseInt(idUbi))){
+                    if(idUbi != null  && !idUbi.equals("") && listaTareas.existenId(Integer.parseInt(idUbi))){
                         listaTareas.insertarAntesDe(Integer.parseInt(idUbi), nuevaTarea);
                         an="si";                          
                     } else{
@@ -120,7 +120,7 @@ public class SvAnadirBuscar extends HttpServlet {
                 //Despues de
                 case "desp":
                     //Se analiza si es nulo o vacio el id
-                    if(idUbi2 != null  && !idUbi.equals("") && listaTareas.existenId(Integer.parseInt(idUbi))){
+                    if(idUbi2 != null  && !idUbi2.equals("") && listaTareas.existenId(Integer.parseInt(idUbi2))){
                         listaTareas.insertarDespuesDe(Integer.parseInt(idUbi2), nuevaTarea);
                         an="si"; 
                     } else{

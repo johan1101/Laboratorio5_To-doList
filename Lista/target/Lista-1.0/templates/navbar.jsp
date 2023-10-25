@@ -2,7 +2,7 @@
 <header>
    
   <!--NAV BAR-->  
-  <nav class="navbar navbar-expand-lg" style="background-color: #8461BB;">
+  <nav class="navbar navbar-expand-lg" style="background-color: #512da8;">
   <div class="container-fluid">
     <!--Icono-->
     <a class="navbar-brand" ><i class="fa-solid fa-list-check fa-xl" style="color:white;"></i></a>
@@ -24,5 +24,6 @@
 </nav>
         
 </header>
+        
         
         

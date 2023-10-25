@@ -40,8 +40,8 @@
                 <button class="hidden" id="login">Regresar</button>
             </div>
             <div class="toggle-panel toggle-right">
-                <h1>Nalmi</h1>
-                <p id="mensaje">Gestiona tus tareas de manera eficiente con nuestro sistema</p>
+                <h1 id="nalmi">Nalmi</h1>
+                <img id="im" src="img/vector2.png" width="80%">
                 <p id="cuenta">No tiene una cuenta?</p>
                 <!-- Boton que muestra opcion registrar -->
                 <button class="hidden" id="register">Regístrese aqui</button>
@@ -92,20 +92,6 @@ else if (registrado != null && registrado.equals("no")) {
     request.removeAttribute("registrado");
     request.removeAttribute("valido");
 %>
-
-<!-- Modal registro exitoso-->
-<div class="modal fade" id="registrado" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="registradoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h2>Usuario registrado exitosamente</h2>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Librerias -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">

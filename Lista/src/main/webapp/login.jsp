@@ -8,6 +8,8 @@
     <!-- Inclución de la plantilla de header -->
     <%@include file="templates/header.jsp" %>
     
+    <!-- Inclución del STYLE -->
+    <%@include file= "style/styleLogin.jsp" %>
     <!-- Variable usuario -->
     <%String usuario = request.getParameter("usuarioI");%>
 
@@ -30,10 +32,6 @@
         //Verificamos si existen tareas, para gestionar el boton de donde agregar
         boolean verificar = listaTareas.verificar();
         
-        //Si no hay nada, se crea
-        if (listaTareas == null) {
-            listaTareas = new Lista();
-        }
         //Generamos la tabla
         String tablaHTML = Metodos.listarTareas(id, context);
         
@@ -79,7 +77,7 @@
             </div>
             <div class="card-body">
                 <h5>Bienvenid@, <%=usuario%></h5>
-                <a href="index.jsp" type="button" class="btn " style="background-color: #8461BB; color: #ffffff;">Cerrar sesión</a>
+                <a href="index.jsp" type="button" class="btn " style="background-color: #512da8; color: #ffffff;">Cerrar sesión</a>
             </div>
             <div class="card-footer text-body-secondary">
             </div>
@@ -168,7 +166,7 @@
                         if (verificar) {
                         %>
                         <!-- En caso que si existan tareas (Muestra boton que pregunta donde agregar) -->
-                        <button type="button" class="btn " id="showOptionsBtn" style="background-color: #8461BB; color: #ffffff;" >Agregar Tarea</button>
+                        <button type="button" class="btn " id="showOptionsBtn" style="background-color: #512da8; color: #ffffff;" >Agregar Tarea</button>
                         <%
                         } else if (!verificar) {
                         %>

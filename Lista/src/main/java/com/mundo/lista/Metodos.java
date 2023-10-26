@@ -8,6 +8,7 @@ package com.mundo.lista;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Clase de metodos 
@@ -62,9 +63,9 @@ public class Metodos {
      * @param id
      * @param context
      */
-   public static String listarTareas (String id, ServletContext context) throws IOException, ClassNotFoundException{
+   public static String listarTareas (String id, ServletContext context, HttpServletRequest request) throws IOException, ClassNotFoundException{
        //Llenamos la lista con la informacion del archivo
-       Lista listaTareas = listaTareas = Serializacion.leerTareas(context);
+       Lista listaTareas = Serializacion.leerTareas(context);
        //En caso de estar vacia se crea una
         if (listaTareas == null) {
              listaTareas = new Lista();
@@ -75,7 +76,7 @@ public class Metodos {
            tabla=listaTareas.generarTabla();
        }
        else if(id != null){//En caso de buscar
-           tabla=listaTareas.generarTablaBusqueda(id);
+           tabla=listaTareas.generarTablaBusqueda(id, request);
     }
 
        return tabla;//Se devuelve la tabla

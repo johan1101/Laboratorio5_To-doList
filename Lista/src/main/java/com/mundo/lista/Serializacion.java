@@ -35,7 +35,7 @@ public class Serializacion {
     }
 
     public static Lista leerTareas(ServletContext context) throws IOException, ClassNotFoundException {
-        Lista listaTareas = null;
+        Lista listaTareas = new Lista();
         // Ruta relativa y absoluta del archivo de datos serializados
         String rutaRelativa = "/data/tareasAgregadas.ser";
         String rutaAbsoluta = context.getRealPath(rutaRelativa);

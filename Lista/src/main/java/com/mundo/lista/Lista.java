@@ -6,14 +6,18 @@ package com.mundo.lista;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Clase lista enlazada
+ *
  * @author Johan Ordoñez - Maria Casanova - Cristhian Padilla
  */
 public class Lista implements Serializable {
+
     //Atributos
     private Nodo cabeza;//Nodo cabeza
+
     /**
      * Clase Nodo
      */
@@ -21,30 +25,30 @@ public class Lista implements Serializable {
 
         public Tareas tarea;
         public Nodo siguiente = null;//Apunta al siguiente
-        
+
         //Constructor
         public Nodo(Tareas tarea) {
             this.tarea = tarea;
         }
     }
-    
+
     //------------------------------------
-    
     /**
      * Metodo insertar nodo al principio
-     * @param tarea 
+     *
+     * @param tarea
      */
     public void insertarPrincipio(Tareas tarea) {
         Nodo nodo = new Nodo(tarea);
         nodo.siguiente = cabeza;
         cabeza = nodo;
     }
-    
+
     //------------------------------------
-    
     /**
      * Metodo insertar nodo al final
-     * @param tarea 
+     *
+     * @param tarea
      */
     public void insertarFinal(Tareas tarea) {
         Nodo nodo = new Nodo(tarea);
@@ -58,13 +62,13 @@ public class Lista implements Serializable {
             actual.siguiente = nodo;  // Agregar el nuevo nodo al final de la lista
         }
     }
-    
+
     //------------------------------------
-    
     /**
      * Metodo insertar despues de
+     *
      * @param idAnterior
-     * @param nuevaTarea 
+     * @param nuevaTarea
      */
     public void insertarDespuesDe(int idAnterior, Tareas nuevaTarea) {
         Nodo nuevoNodo = new Nodo(nuevaTarea);
@@ -79,13 +83,13 @@ public class Lista implements Serializable {
             actual = actual.siguiente;
         }
     }
-   
+
     //------------------------------------
-    
     /**
      * Metodo insertar antes de
+     *
      * @param idAnterior
-     * @param nuevaTarea 
+     * @param nuevaTarea
      */
     public void insertarAntesDe(int idAnterior, Tareas nuevaTarea) {
         Nodo nuevoNodo = new Nodo(nuevaTarea);
@@ -117,12 +121,12 @@ public class Lista implements Serializable {
             actual = actual.siguiente;
         }
     }
-    
+
     //------------------------------------
-    
     /**
      * Metodo concer la longitud de la lista
-     * @return 
+     *
+     * @return
      */
     public int longitud() {
         Nodo actual = cabeza;
@@ -135,10 +139,11 @@ public class Lista implements Serializable {
         }
         return longitud;//Se regresa la longitud
     }
-    
+
     /**
      * Metodo eliminar tarea
-     * @param id 
+     *
+     * @param id
      */
     public void eliminarTarea(int id) {
         if (cabeza != null) {
@@ -165,6 +170,7 @@ public class Lista implements Serializable {
             }
         }
     }
+
     /**
      * Metodo mostrar las tareas
      */
@@ -181,16 +187,18 @@ public class Lista implements Serializable {
             actual = actual.siguiente;
         }
     }
+
     /**
      * Metodo generar la tabla con la lista
-     * @return 
+     *
+     * @return
      */
     public String generarTabla() {
         StringBuilder tablaHTML = new StringBuilder();
         Nodo actual = cabeza;
         //Si el primero no es nulo
-        if(actual!= null){
-        //Se recorre la lista
+        if (actual != null) {
+            //Se recorre la lista
             while (actual != null) {
                 Tareas tarea = actual.tarea;
                 tablaHTML.append("<tr>");
@@ -200,31 +208,24 @@ public class Lista implements Serializable {
                 tablaHTML.append("<td>").append(tarea.getFechaVencimiento()).append("</td>");
 
                 // Botones
-               tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\" data-bs-toggle=\"modal\" data-bs-target=\"#editar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
-               tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
+                tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\" data-bs-toggle=\"modal\" data-bs-target=\"#editar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
+                tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
 
                 tablaHTML.append("</tr>");
                 actual = actual.siguiente;
             }
-        //Si el primero es nulo
-        } else if(actual==null){
-            tablaHTML.append("<tr>");
-            tablaHTML.append("<td>No hay tareas registradas</td>");       
-            tablaHTML.append("<td></td>");  
-            tablaHTML.append("<td></td>");  
-            tablaHTML.append("<td></td>");  
-            tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
-            tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></a></td>");
-            tablaHTML.append("</tr>");
         }
+
         tablaHTML.append("</table>");  // Cierra la tabla
 
         return tablaHTML.toString();//Se manda la tabla creada
     }
+
     /**
      * Verificar si existen con el mismo id
+     *
      * @param id
-     * @return 
+     * @return
      */
     public boolean existenId(int id) {
         Nodo actual = cabeza;
@@ -238,10 +239,12 @@ public class Lista implements Serializable {
         }
         return encontrado;//Envia bandera
     }
+
     /**
      * Editar titulo tarea
+     *
      * @param id
-     * @param titulo 
+     * @param titulo
      */
     public void editarTitulo(int id, String titulo) {
         Nodo actual = cabeza;
@@ -255,13 +258,15 @@ public class Lista implements Serializable {
             actual = actual.siguiente;//Continua recorriendo
         }
     }
+
     /**
      * Editar descripcion tarea
+     *
      * @param id
-     * @param descripcion 
+     * @param descripcion
      */
     public void editarDescripcion(int id, String descripcion) {
-         Nodo actual = cabeza;
+        Nodo actual = cabeza;
         boolean encontrado = false;//Bandera
         while (actual != null && !encontrado) {
             Tareas tarea = actual.tarea;
@@ -272,11 +277,12 @@ public class Lista implements Serializable {
             actual = actual.siguiente;//Continua recorriendo
         }
     }
-    
+
     /**
      * Editar fecha tarea
+     *
      * @param id
-     * @param fecha 
+     * @param fecha
      */
     public void editarFecha(int id, Date fecha) {
         Nodo actual = cabeza;
@@ -290,25 +296,31 @@ public class Lista implements Serializable {
             actual = actual.siguiente;//Continua recorriendo
         }
     }
+
     /**
      * Generar tabla con el termino de busqueda
+     *
      * @param terminoBusqueda
-     * @return 
+     * @return
      */
-    public String generarTablaBusqueda(String terminoBusqueda) {
+    public String generarTablaBusqueda(String terminoBusqueda, HttpServletRequest request) {
         StringBuilder tablaHTML = new StringBuilder();//Creamos tabla
-        
+
         Nodo actual = cabeza;
-        
-        boolean encontrado=false;//Bandera para mostrar mensaje de no encontrado al usuario
-        
-        if (actual != null && terminoBusqueda != null && !terminoBusqueda.isEmpty()) { //Verificar condiciones
-            
+
+        String usuario = request.getParameter("usuarioI");
+
+        boolean hayT = verificar();
+
+        boolean encontrado = false;//Bandera para mostrar mensaje de no encontrado al usuario
+
+        if (actual != null && terminoBusqueda != null && !terminoBusqueda.isEmpty() && hayT == true) { //Verificar condiciones
+
             while (actual != null) { //Recorrer lista
                 Tareas tarea = actual.tarea;
 
                 // Comprueba si la tarea coincide con el término de búsqueda
-                if (tarea.getId()==Integer.parseInt(terminoBusqueda)) {  
+                if (tarea.getId() == Integer.parseInt(terminoBusqueda)) {
                     tablaHTML.append("<tr>");
                     tablaHTML.append("<td>").append(tarea.getId()).append("</td>");
                     tablaHTML.append("<td>").append(tarea.getTitulo()).append("</td>");
@@ -316,42 +328,50 @@ public class Lista implements Serializable {
                     tablaHTML.append("<td>").append(tarea.getFechaVencimiento()).append("</td>");
 
                     // Botones
-                   tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\" data-bs-toggle=\"modal\" data-bs-target=\"#editar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
-                   tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
+                    tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\" data-bs-toggle=\"modal\" data-bs-target=\"#editar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
+                    tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#eliminar\" data-nombre=\"" + tarea.getId() + "\"><i class=\"fa-solid fa-trash\"></i></a></td>");
 
                     tablaHTML.append("</tr>");
-                    encontrado=true;
+                    tablaHTML.append("<tr>");
+                    tablaHTML.append("<td colspan='6' align='center' valign='middle'><a href=\"login.jsp?usuarioI=" + usuario + "\" class=\"btn\" style=\"background-color: #512da8; color: #ffffff;\">Lista completa</a></td>");
+
+                    tablaHTML.append("</tr>");
+                    encontrado = true;
                 }
 
                 actual = actual.siguiente;
             }
-        } 
-        //Si no se encontró
-        if(!encontrado) {
-                    tablaHTML.append("<tr>");
-                    tablaHTML.append("<td>Tarea no encontrada</td>");
-                    tablaHTML.append("<td></td>");
-                    tablaHTML.append("<td></td>");
-                    tablaHTML.append("<td></td>");
-                    tablaHTML.append("<td><a href=\"#\" type=\"button\" class=\"btn btn-outline-success\"><i class=\"fa-solid fa-pen-clip\"></i></a>");
-                    tablaHTML.append("<a href=\"#\" type=\"button\" class=\"btn btn-outline-danger\"><i class=\"fa-solid fa-trash\"></i></a></td>");
-                    tablaHTML.append("</tr>");
-                }
+
+            if (encontrado == false) {
+                tablaHTML.append("<tr>");
+                tablaHTML.append("<td colspan='6' align='center' valign='middle'>").append("No se encontró una tarea con ese ID").append("</td>");
+
+                tablaHTML.append("</tr>");
+
+                tablaHTML.append("<tr>");
+                tablaHTML.append("<td colspan='6' align='center' valign='middle'><a href=\"login.jsp?usuarioI=" + usuario + "\" class=\"btn\" style=\"background-color: #512da8; color: #ffffff;\">Lista completa</a></td>");
+
+                tablaHTML.append("</tr>");
+
+            }
+        }
 
         tablaHTML.append("</table>");  // Cierra la tabla
 
         return tablaHTML.toString(); //Se devuelve la tabla
     }
+
     /**
      * Metodo para ver si hay tareas
-     * @return 
+     *
+     * @return
      */
     public boolean verificar() {
         Nodo actual = cabeza;
-            //En caso que el primero no este nulo se manda true
-            if (actual!=null) {
-                return true;
-            }
+        //En caso que el primero no este nulo se manda true
+        if (actual != null) {
+            return true;
+        }
         return false;//Return false si nunca entro al condicional
     }
 

@@ -15,7 +15,7 @@
       </ul>
         <!--SEARCH-->
       <form action="SvAnadirBuscar" method="GET" class="d-flex" >
-        <input type="number" class="form-control me-2" type="search" placeholder="Ingrese el id" aria-label="Search" name="buscar"  min="0" step="1" >
+        <input type="number" class="form-control me-2" type="search" placeholder="Ingrese el id" aria-label="Search" name="buscar"  min="0" step="1" required >
         <input type="text" name="usuarioI" class="form-control" value="<%=usuario%>" hidden>
         <button class="btn btn-outline-light" type="submit">Buscar</button>
       </form>

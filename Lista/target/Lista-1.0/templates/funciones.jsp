@@ -1,78 +1,83 @@
 <script>
-    
 
+    function validarLongitud(input) {
+        var valor = input.value;
+        if (valor.length > 8) {
+            input.value = valor.slice(0, 8); // Limita la longitud a 8 dígitos
+        }
+    }
 
-  //TOASTR tareas añadidas exitosamente
-  function tareaSi() {
+    //TOASTR tareas añadidas exitosamente
+    function tareaSi() {
         toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-    
-    // Mostrar una notificación Toastr de error
-    toastr.success('Se ha añadido exitosamente!', 'Registrado');
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        // Mostrar una notificación Toastr de error
+        toastr.success('Se ha añadido exitosamente!', 'Registrado');
     }
     //TOASTR tareas NO añadidas exitosamente
-    function tareaNo(){
-         toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-    
-    // Mostrar una notificación Toastr de error
-    toastr.error('Ya existe una tarea con este id, intenta con otro!', 'No se ha podido registrar');
+    function tareaNo() {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        // Mostrar una notificación Toastr de error
+        toastr.error('Ya existe una tarea con este id, intenta con otro!', 'No se ha podido registrar');
     }
-    
+
     //TOASTR error con el ID
     function errorId() {
         toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-    // Mostrar una notificación Toastr de error
-    toastr.error('Hubo un error con el id, no existe o no lo digitaste. Intenta de nuevo!', 'No se ha podido registrar');
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        // Mostrar una notificación Toastr de error
+        toastr.error('Hubo un error con el id, no existe o no lo digitaste. Intenta de nuevo!', 'No se ha podido registrar');
     }
-    
-    
+
+
     // Función de flecha que se ejecuta inmediatamente.
     (() => {
         'use strict'; // Modo estricto para un código más seguro y eficiente.
@@ -93,15 +98,15 @@
             }, false);
         });
     })();
-    
-       var id = ""; //Variable id para eliminar.
+
+    var id = ""; //Variable id para eliminar.
 
     /**
      * Esta función se encarga de mostrar el modal de confirmación antes de eliminar una tarea.
      * Se dispara cuando se muestra el modal.
      */
     $('#eliminar').on('show.bs.modal', function (event) {
-    // Obtiene el botón que desencadenó el evento de mostrar el modal
+        // Obtiene el botón que desencadenó el evento de mostrar el modal
         var button = $(event.relatedTarget);
 
         // Obtiene el id de la tarea desde el atributo 'data-nombre' del botón
@@ -118,69 +123,69 @@
     });
 
     $('#editar').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var idTarea = button.data('nombre');
-    
-    // Mostrar el ID de la tarea en el modal
-    $('#tareaId').text(idTarea);
+        var button = $(event.relatedTarget);
+        var idTarea = button.data('nombre');
 
-    // También puedes almacenar el ID en una variable global si necesitas acceder a él en otros lugares del código.
-    tareaId = idTarea;
-});
+        // Mostrar el ID de la tarea en el modal
+        $('#tareaId').text(idTarea);
+
+        // También puedes almacenar el ID en una variable global si necesitas acceder a él en otros lugares del código.
+        tareaId = idTarea;
+    });
 
 // JavaScript para modal1
-$('#editar').on('show.bs.modal', function (event) {
-    // Al hacer clic en el botón, pasa la variable tareaId a modal2
-    $('#btnPasarVariable').click(function () {
-        $('#edTit').data('tareaId', tareaId);
-        $('#edTit').modal('show'); // Muestra modal2
+    $('#editar').on('show.bs.modal', function (event) {
+        // Al hacer clic en el botón, pasa la variable tareaId a modal2
+        $('#btnPasarVariable').click(function () {
+            $('#edTit').data('tareaId', tareaId);
+            $('#edTit').modal('show'); // Muestra modal2
+        });
+        $('#btnPasarVariable1').click(function () {
+            $('#edDes').data('tareaId', tareaId);
+            $('#edDes').modal('show'); // Muestra modal2
+        });
+        $('#btnPasarVariable2').click(function () {
+            $('#edFec').data('tareaId', tareaId);
+            $('#edFec').modal('show'); // Muestra modal2
+        });
     });
-    $('#btnPasarVariable1').click(function () {
-        $('#edDes').data('tareaId', tareaId);
-        $('#edDes').modal('show'); // Muestra modal2
-    });
-    $('#btnPasarVariable2').click(function () {
-        $('#edFec').data('tareaId', tareaId);
-        $('#edFec').modal('show'); // Muestra modal2
-    });
-});
 // JavaScript para modal2
-$('#edTit').on('show.bs.modal', function (event) {
-    // Obtiene la variable pasada desde modal1 y la muestra en modal2
-    var tareaId = $('#edTit').data('tareaId');
-    $('#idEditar').text(tareaId);
-    
-    var inputElement = $('#edTit').find('input[name="idEd"]');
-    
-    inputElement.val($('#idEditar').text());
-    
-   
-});
+    $('#edTit').on('show.bs.modal', function (event) {
+        // Obtiene la variable pasada desde modal1 y la muestra en modal2
+        var tareaId = $('#edTit').data('tareaId');
+        $('#idEditar').text(tareaId);
 
-$('#edDes').on('show.bs.modal', function (event) {
-    // Obtiene la variable pasada desde modal1 y la muestra en modal2
-    var tareaId = $('#edDes').data('tareaId');
-    $('#idEditar').text(tareaId);
-    
-    var inputElement = $('#edDes').find('input[name="idEd"]');
-    
-    inputElement.val($('#idEditar').text());
-    
-   
-});
+        var inputElement = $('#edTit').find('input[name="idEd"]');
 
-$('#edFec').on('show.bs.modal', function (event) {
-    // Obtiene la variable pasada desde modal1 y la muestra en modal2
-    var tareaId = $('#edFec').data('tareaId');
-    $('#idEditar').text(tareaId);
-    
-    var inputElement = $('#edFec').find('input[name="idEd"]');
-    
-    inputElement.val($('#idEditar').text());
-    
-   
-});
- // Obtiene referencias a los botones y opciones
+        inputElement.val($('#idEditar').text());
+
+
+    });
+
+    $('#edDes').on('show.bs.modal', function (event) {
+        // Obtiene la variable pasada desde modal1 y la muestra en modal2
+        var tareaId = $('#edDes').data('tareaId');
+        $('#idEditar').text(tareaId);
+
+        var inputElement = $('#edDes').find('input[name="idEd"]');
+
+        inputElement.val($('#idEditar').text());
+
+
+    });
+
+    $('#edFec').on('show.bs.modal', function (event) {
+        // Obtiene la variable pasada desde modal1 y la muestra en modal2
+        var tareaId = $('#edFec').data('tareaId');
+        $('#idEditar').text(tareaId);
+
+        var inputElement = $('#edFec').find('input[name="idEd"]');
+
+        inputElement.val($('#idEditar').text());
+
+
+    });
+    // Obtiene referencias a los botones y opciones
     const showOptionsBtn = document.getElementById("showOptionsBtn");
     const opcionesAdicionales = document.getElementById("opcionesAdicionales");
     const finalSubmitBtn = document.getElementById("finalSubmitBtn");
@@ -194,5 +199,5 @@ $('#edFec').on('show.bs.modal', function (event) {
         // Muestra el botón final para enviar
         finalSubmitBtn.style.display = "block";
     });
-    
+
 </script>

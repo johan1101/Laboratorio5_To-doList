@@ -99,7 +99,7 @@
                         <label for="validationCustomUsername" class="form-label">Id</label>
                         <div class="input-group">
                             <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-id-card"></i></span>
-                            <input type="number" name="id" class="form-control" min="0" step="1" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                            <input type="number" name="id" class="form-control" min="0" max="999999999" step="1" id="validationCustomUsername" aria-describedby="inputGroupPrepend" oninput="validarLongitud(this)" required>
                             <!-- Verificación -->
                             <div class="valid-feedback">
                                 Se mira bien!
@@ -193,7 +193,7 @@
                                 <input type="radio" name="opcion" id="opcion1" value="ant">
                                 <label for="opcion1">Agregar antes de</label>
                                 <div class="input-group">
-                                    <input type="number" name="idEd" class="form-control" min="0" step="1" aria-describedby="inputGroupPrepend" placeholder="Ingresa el id">
+                                    <input type="number" name="idEd" class="form-control" min="0" max="999999999" step="1" aria-describedby="inputGroupPrepend" placeholder="Ingresa el id" oninput="validarLongitud(this)">
                                 </div>
                             </div>
                             <!-- Al final -->
@@ -206,7 +206,7 @@
                                 <input type="radio" name="opcion" id="opcion1" value="desp">
                                 <label for="opcion2">Agregar después de</label>
                                 <div class="input-group">
-                                    <input type="number" name="idEd2" class="form-control" min="0" step="1" aria-describedby="inputGroupPrepend" placeholder="Ingresa el id">
+                                    <input type="number" name="idEd2" class="form-control"  max="999999999" min="0" step="1" aria-describedby="inputGroupPrepend" placeholder="Ingresa el id" oninput="validarLongitud(this)">
                                 </div>
                             </div>
                         </div>
